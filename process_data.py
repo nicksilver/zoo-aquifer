@@ -1,13 +1,15 @@
 import requests
 import os
 import pandas as pd
+import statsmodels.api as sm
+import numpy as np
 import dataretrieval.nwis as nwis
 
 
 class GWIC(object):
     def __init__(self, gwicids):
         """gwicids (list): list of gwicids to process"""
-        self.gwicid = gwicids
+        self.gwicids = gwicids
 
     def get_data(self, gwicid):
         """Get data from the gwic API and return it as a dict"""
@@ -21,6 +23,18 @@ class GWIC(object):
         except requests.exceptions.RequestException as e:
             print("Error connecting to the API:", e)
             return None
+    
+    def drop_outliers(self, raw_data, std=5):
+        """Drop outliers from raw_data
+        
+        std: int, number of standard deviations to use for outlier detection
+        """
+        
+        stl = sm.tsa.STL(raw_data['swl_ground'], period=12, robust=True)
+        result = stl.fit()
+        residuals = result.resid
+        outliers = residuals[np.abs(residuals) > np.std(residuals)*std]
+        return raw_data.drop(outliers.index)
 
     def process_data(self, data):
         """Process the data and return the result as pandas DataFrame"""
@@ -29,6 +43,7 @@ class GWIC(object):
         df = df[['gwicid', 'date_measured', 'swl_ground']]
         df = df.rename(columns={'date_measured': 'time'})
         df['time'] = pd.to_datetime(df['time'])
+        df = self.drop_outliers(df)
         df = df.loc[(df.time >= '1995-01-01') &
                     (df.time < '2024-01-01')]
         df = df.resample('M', on='time').median()
