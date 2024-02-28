@@ -128,12 +128,12 @@ gwicids = metadf['gwicid'].values
 
 # Process gwic data
 GWIC = GWIC(gwicids)
-gwic_data = GWIC.get_all_data(filename=gwic_filename, check_file=True)
+gwic_data = GWIC.get_all_data(filename=gwic_filename, check_file=False)
 gwic_data.plot(kind='line', style='o', legend=False, markersize=2)
 
 # Process USGS data
 clk_fk_avb_mso = '12340500'
 usgs_filename = './data/clark_fk_above_missoula_q.csv'
 USGS = USGS(clk_fk_avb_mso)
-usgs_data = USGS.get_all_data(filename=usgs_filename, check_file=True)
+usgs_data = USGS.get_all_data(filename=usgs_filename, check_file=False)
 usgs_data.plot(kind='line', legend=False)
