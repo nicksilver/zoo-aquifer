@@ -1,10 +1,14 @@
 import requests
 import os
 import pandas as pd
+import geopandas as gpd
 import statsmodels.api as sm
 import numpy as np
 import dataretrieval.nwis as nwis
 from sklearn.linear_model import LinearRegression
+from .pysda import sdapoly, sdaprop, sdainterp
+from shapely.geometry import Polygon
+
 
 class GWIC():
     def __init__(self, gwicids):
@@ -119,6 +123,50 @@ class USGS():
             df.index = df.index.tz_localize(None)
             df.to_csv(filename, index=True)
         return df
+
+class SSURGO():
+    def __init__(self, shp_path, gdf_pts):
+        self.shp_path = shp_path
+        self.gdf_pts = gdf_pts
+        
+    def create_bbox_shp(self):
+        """Create a bounding box from pts and save it as a shapefile."""
+        bounds = self.gdf_pts.total_bounds
+        bbox = Polygon([(bounds[0], bounds[1]), (bounds[0], bounds[3]), (bounds[2], bounds[3]), (bounds[2], bounds[1])])
+        gdf_bbox = gpd.GeoDataFrame({'geometry': [bbox]}, crs=self.gdf_pts.crs)
+        gdf_bbox = gdf_bbox.buffer(1000, join_style=2).to_crs(epsg=4326)
+        gdf_bbox.to_file(self.shp_path)
+        
+    def soil_prop(self, prop='ksat_r'):
+        """Get soil property from SSURGO for all points."""
+        myaoi = sdapoly.shp(self.shp_path)
+        # spatial join to get soil properties that intersect with pts
+        units = gpd.sjoin(myaoi, 
+                  self.gdf_pts.reset_index().to_crs(4326), 
+                  how='inner', 
+                  predicate='intersects')
+        # weighted average of property
+        wtdavg = sdaprop.getprop(df=units,
+                                 column='mukey',
+                                 method='wtd_avg',
+                                 top=0,
+                                 bottom=100,
+                                 prop=prop,
+                                 minmax=None,
+                                 prnt=False,
+                                 meta=False)
+        # merge and change ksat None to zero
+        df_prop = units[['gwicid', 'mukey']].merge(wtdavg[['mukey', prop]], 
+                                                   on='mukey').fillna(0)
+        return df_prop[['gwicid', prop]].merge(self.gdf_pts, on='gwicid')
+    
+    def get_all_data(self, prop='ksat_r'):
+        """Get soil properties for all points."""
+        if not os.path.exists(self.shp_path):
+            self.create_bbox_shp()
+        df_prop = self.soil_prop(prop=prop)
+        df_prop[prop] = df_prop[prop].astype(float)
+        return df_prop.set_index('gwicid')
 
 class Imputer():
     def __init__(self, df):

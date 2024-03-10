@@ -1,0 +1,56 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.34.4-Prizren">
+  <identifier>Valu1</identifier>
+  <parentidentifier></parentidentifier>
+  <language>ENG</language>
+  <type>dataset</type>
+  <title>Valu1 - Montana</title>
+  <abstract>The valu1 table within this 202310 database is a compilation of 57 pre-summarized or "ready to map" attributes derived from the Soil Survey Geographic (SSURGO) Database, including: soil organic carbon (SOC), available water storage (AWS), crop productivity indices (NCCPI), crop root zone depths, available water storage within crop root zone depths, drought-vulnerable soil landscapes, and potential wetland soil landscapes. These attribute data are pre-summarized to the map unit level using best practice generalization methods intended to meet the needs of most users. The generalization methods include map unit component weighted averages and percent of the map unit meeting a given criteria.
+
+The 202310 Value Added Look Up (valu) Table is designed to facilitate thematic mapping for several important soil properties and interpretations. This table can be used in conjunction with any gSSURGO product of the same vintage. The themes were prepared to better meet the mapping needs of users of soil survey information and can be used with both SSURGO and gSSURGO datasets. The valu1 table contains data only for survey areas included in this gSSURGO database. Prior to FY2017, each value table was national in extent.</abstract>
+  <keywords vocabulary="Search keys">
+    <keyword>gridded, SSURGO, Geospatial Data Gateway, soils, raster, GDG, Soil Survey, gSSURGO, valu, Valu Added Look Up Table, ready to map, pre-summarized, valu1</keyword>
+  </keywords>
+  <keywords vocabulary="gmd:topicCategory">
+    <keyword>gridded, SSURGO, Geospatial Data Gateway, soils, raster, GDG, Soil Survey, gSSURGO, valu, Valu Added Look Up Table, ready to map, pre-summarized, valu1</keyword>
+  </keywords>
+  <contact>
+    <contactAddress>
+      <type>postal</type>
+      <address>100 Centennial Mall North</address>
+      <city>Lincoln</city>
+      <administrativearea>NE</administrativearea>
+      <postalcode>68508-3866</postalcode>
+      <country>US</country>
+    </contactAddress>
+    <name></name>
+    <organization>U.S. Department of Agriculture, Natural Resources Conservation Service, National Soil Survey Center</organization>
+    <position></position>
+    <voice>402 437 5499</voice>
+    <fax></fax>
+    <email>SoilsHotline@usda.gov</email>
+    <role>Point of contact</role>
+  </contact>
+  <links/>
+  <dates/>
+  <fees></fees>
+  <constraints type="Limitations of use">The U.S. Department of Agriculture, Natural Resources Conservation Service, should be acknowledged as the data source in product derived from these data. This dataset is not designed for use as a primary regulatory tool in permitting or siting decisions, but may be used as a reference source. This is public information and may be interpreted by organizations, agencies, units of government, or others based on needs; however, they are responsible for the appropriate application. Federal, State, or local regulatory bodies are not to reassign to the Natural Resources Conservation Service any authority for the decisions that they make. The Natural Resources Conservation Service will not perform any evaluations of these maps for purposes related solely to State or local regulatory programs. Digital data files are periodically updated. Files are dated, and users are responsible for obtaining the latest version of the data.</constraints>
+  <rights>Soil Survey Staff. Value Added Look Up (valu1) Table for the Gridded Soil Survey Geographic (gSSURGO) Database. United States Department of Agriculture, Natural Resources Conservation Service. Available online at http://datagateway.nrcs.usda.gov/. 20230906 (202310 official release).</rights>
+  <encoding></encoding>
+  <crs>
+    <spatialrefsys nativeFormat="Wkt">
+      <wkt></wkt>
+      <proj4></proj4>
+      <srsid>0</srsid>
+      <srid>0</srid>
+      <authid></authid>
+      <description></description>
+      <projectionacronym></projectionacronym>
+      <ellipsoidacronym></ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </crs>
+  <extent>
+    <spatial minx="-170.8467990000000043" maxz="0" crs="EPSG:4326" minz="0" maxx="171.76385999999999399" maxy="65.6429820000000035" dimensions="2" miny="-14.37385599999999997"/>
+  </extent>
+</qgis>
