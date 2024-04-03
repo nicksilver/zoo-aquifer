@@ -40,14 +40,14 @@ class GWIC():
         outliers = residuals[np.abs(residuals) > np.std(residuals)*std]
         return raw_data.drop(outliers.index)
 
-    def process_data(self, data):
+    def process_data(self, data, outliers_std=5):
         """Process the data and return the result as pandas DataFrame"""
         
         df = pd.DataFrame(data)
         df = df[['gwicid', 'date_measured', 'swl_ground']]
         df = df.rename(columns={'date_measured': 'time'})
         df['time'] = pd.to_datetime(df['time'])
-        df = self.drop_outliers(df)
+        df = self.drop_outliers(df, std=outliers_std)
         df = df.loc[(df.time >= '1995-01-01') &
                     (df.time < '2024-01-01')]
         df = df.resample('M', on='time').median()
@@ -55,7 +55,7 @@ class GWIC():
         df = df.reset_index()
         return df
 
-    def get_all_data(self, filename, check_file=True):
+    def get_all_data(self, filename, check_file=True, outliers_std=5):
         """Return monthly processed data for all gwicids as a pandas DataFrame.
         
         filename: str, filename to check for data or save data to
@@ -71,7 +71,7 @@ class GWIC():
             for gwicid in self.gwicids:
                 print('Processing data for well {}'.format(gwicid))
                 data = self.get_data(gwicid)
-                df = self.process_data(data)
+                df = self.process_data(data, outliers_std=outliers_std)
                 df.set_index('time', inplace=True)
                 df.rename(columns={'swl_ground': gwicid}, inplace=True)
                 df_full = pd.concat([df_full, df[gwicid]], axis=1)
