@@ -1,4 +1,5 @@
 .vscode
+utils/pysda/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
