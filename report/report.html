@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Adaptive Hydrology">
-<meta name="dcterms.date" content="2024-06-03">
+<meta name="dcterms.date" content="2024-06-04">
 
 <title>Missoula Aquifer Sustainability Study</title>
 <style>
@@ -139,8 +139,9 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#clark-fork-river" id="toc-clark-fork-river" class="nav-link" data-scroll-target="#clark-fork-river">Clark Fork River</a></li>
   <li><a href="#groundwater-table-depth" id="toc-groundwater-table-depth" class="nav-link" data-scroll-target="#groundwater-table-depth">Groundwater Table Depth</a></li>
-  <li><a href="#pumping-rates-and-groundwater-depth" id="toc-pumping-rates-and-groundwater-depth" class="nav-link" data-scroll-target="#pumping-rates-and-groundwater-depth">Pumping Rates and Groundwater Depth</a></li>
+  <li><a href="#groundwater-withdrawals" id="toc-groundwater-withdrawals" class="nav-link" data-scroll-target="#groundwater-withdrawals">Groundwater Withdrawals</a></li>
   </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -166,7 +167,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 3, 2024</p>
+      <p class="date">June 4, 2024</p>
     </div>
   </div>
   
@@ -208,7 +209,7 @@ window.Quarto = {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> <span class="st">'2023-09-30'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="e4707a7a-b05a-42f9-8256-4ade706c7678" class="cell" data-execution_count="90">
+<div id="e4707a7a-b05a-42f9-8256-4ade706c7678" class="cell" data-execution_count="217">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring in data</span></span>
@@ -216,22 +217,26 @@ window.Quarto = {
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> pd.read_csv(<span class="st">'../data/missoula_valley_monitored_wells.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'time'</span>], index_col<span class="op">=</span><span class="st">'time'</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[(df[<span class="st">'time'</span>] <span class="op">&gt;=</span> start_date) <span class="op">&amp;</span> (df[<span class="st">'time'</span>] <span class="op">&lt;=</span> end_date)]</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_static <span class="op">=</span> pd.read_csv(<span class="st">'../data/static_variables.csv'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Format streamflow data</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> df[[<span class="st">'time'</span>, <span class="st">'Q'</span>]]</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>q.set_index(<span class="st">'time'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>q.index <span class="op">=</span> pd.to_datetime(q.index)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Format groundwater data</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> <span class="op">-</span>df_raw</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>depth_cols <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> df.columns <span class="cf">if</span> <span class="kw">not</span> i <span class="kw">in</span> [<span class="st">'time'</span>, <span class="st">'Q'</span>, <span class="st">'pumping_rate'</span>]]</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> depth_cols:</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    df[col] <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt groundwater data</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>df_melt <span class="op">=</span> df.drop(columns<span class="op">=</span><span class="st">'Q'</span>).melt(id_vars<span class="op">=</span><span class="st">'time'</span>)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>df_melt[<span class="st">'time'</span>] <span class="op">=</span> pd.to_datetime(df_melt[<span class="st">'time'</span>])</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>df_melt.rename(columns<span class="op">=</span>{<span class="st">'variable'</span>:<span class="st">'gwic_id'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_norm <span class="op">=</span> pd.read_csv(<span class="st">'../data/dynamic_variables_all_normalized.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df_norm <span class="op">=</span> df_norm[(df_norm.index <span class="op">&gt;=</span> start_date) <span class="op">&amp;</span> (df_norm.index <span class="op">&lt;=</span> end_date)]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Format streamflow data</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> df[[<span class="st">'time'</span>, <span class="st">'Q'</span>]]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>q.set_index(<span class="st">'time'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>q.index <span class="op">=</span> pd.to_datetime(q.index)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>q_norm <span class="op">=</span> df_norm[<span class="st">'Q'</span>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Format groundwater data</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'gw_avg'</span>] <span class="op">=</span> df_norm.iloc[:, <span class="dv">2</span>:].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> <span class="op">-</span>df_raw</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>depth_cols <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> df.columns <span class="cf">if</span> <span class="kw">not</span> i <span class="kw">in</span> [<span class="st">'time'</span>, <span class="st">'Q'</span>, <span class="st">'pumping_rate'</span>]]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> depth_cols:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    df[col] <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt groundwater data</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>df_melt <span class="op">=</span> df.drop(columns<span class="op">=</span><span class="st">'Q'</span>).melt(id_vars<span class="op">=</span><span class="st">'time'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>df_melt[<span class="st">'time'</span>] <span class="op">=</span> pd.to_datetime(df_melt[<span class="st">'time'</span>])</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>df_melt.rename(columns<span class="op">=</span>{<span class="st">'variable'</span>:<span class="st">'gwic_id'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="methods" class="level2">
@@ -253,7 +258,7 @@ Figure&nbsp;1: The study site including the 16 monitoring wells used in the anal
 <section id="data-imputation" class="level3">
 <h3 class="anchored" data-anchor-id="data-imputation">Data Imputation</h3>
 <p>Historical groundwater measurements from the 16 sites were taken sporadically and inconsistently (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;2</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We gap-filled the data using a mulitple linear regression imputation method based on the Clark Fork River monthly average flow and the day of the year (i.e.&nbsp;last day of the month) to create consistent monthly data across all water years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, and seasonal trend decomposition using LOESS (STL) by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression data imputation method proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared).</p>
-<div id="cell-fig-gw-imputation" class="cell" data-execution_count="81">
+<div id="cell-fig-gw-imputation" class="cell" data-execution_count="178">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">6</span>))</span>
@@ -291,19 +296,19 @@ Figure&nbsp;2: The groundwater data points for each well before imputation. Colo
 <section id="clark-fork-river" class="level3">
 <h3 class="anchored" data-anchor-id="clark-fork-river">Clark Fork River</h3>
 <p>The Clark Fork River serves as the main source for aquifer recharge in the Missoula Valley <span class="citation" data-cites="tallmanSourcesWaterCaptured2005">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>)</span>. While other inputs exist, we focus almost exclusively on the Clark Fork due to the overall magnitude relative to other inputs, and the high temporal correlation with one another that all the inputs exhibit [CITE Johnnie analysis]. A seasonal decomposition using LOESS (<a href="#fig-cfr-stl" class="quarto-xref">Figure&nbsp;3</a>) shows that there has been a consistent increasing trend in monthly average flows over the study period (2000-2023). In addition, as expected, there is a strong seasonality component with peak flows coming in late spring and baseflows in late summer and early fall.</p>
-<div id="cell-fig-cfr-stl" class="cell" data-execution_count="82">
+<div id="cell-fig-cfr-stl" class="cell" data-execution_count="208">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>stl <span class="op">=</span> STL(q, seasonal<span class="op">=</span><span class="dv">13</span>, period<span class="op">=</span><span class="dv">12</span>, robust<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> stl.fit()</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>stl_q <span class="op">=</span> STL(q, seasonal<span class="op">=</span><span class="dv">13</span>, period<span class="op">=</span><span class="dv">12</span>, robust<span class="op">=</span><span class="va">True</span>, trend<span class="op">=</span><span class="dv">39</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>res_q <span class="op">=</span> stl_q.fit()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>res.observed.plot(ax<span class="op">=</span>ax[<span class="dv">0</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>res_q.observed.plot(ax<span class="op">=</span>ax[<span class="dv">0</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'Observed'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>res.trend.plot(ax<span class="op">=</span>ax[<span class="dv">1</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>res_q.trend.plot(ax<span class="op">=</span>ax[<span class="dv">1</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'Trend'</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>res.seasonal.plot(ax<span class="op">=</span>ax[<span class="dv">2</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>res_q.seasonal.plot(ax<span class="op">=</span>ax[<span class="dv">2</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">'Seasonal'</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>res.resid.plot(ax<span class="op">=</span>ax[<span class="dv">3</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>res_q.resid.plot(ax<span class="op">=</span>ax[<span class="dv">3</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].set_ylabel(<span class="st">'Residual'</span>)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Seasonal Decomposition of CFR Streamflow'</span>)</span>
@@ -325,7 +330,7 @@ Figure&nbsp;3: Seasonal decomposition of the Clark Fork River monthly streamflow
 </div>
 </div>
 <p>We investigate the trend further using a Mann-Kendall test (<span class="citation" data-cites="mannNonparametricTestsTrend1945">Mann (<a href="#ref-mannNonparametricTestsTrend1945" role="doc-biblioref">1945</a>)</span>, <span class="citation" data-cites="kendallRankCorrelationMethods1975">Kendall (<a href="#ref-kendallRankCorrelationMethods1975" role="doc-biblioref">1975</a>)</span>), which avoids assumptions of normality and independence. The results indicate a statistically significant (<span class="math inline">\(p&lt;0.5\)</span>) increasing trend of 24 cfs/month. We further break down the trend analysis into seasons: winter (December, January, February), spring (March, April, May), summer (June, July, August), and fall (September, October, November) (<a href="#fig-cfr-seas-trends" class="quarto-xref">Figure&nbsp;4</a>). All four seasons have increasing trends, although the summer season’s trend is not statistically significant at the <span class="math inline">\(p&lt;0.5\)</span> level.</p>
-<div id="cell-fig-cfr-seas-trends" class="cell" data-execution_count="83">
+<div id="cell-fig-cfr-seas-trends" class="cell" data-execution_count="181">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
@@ -400,7 +405,7 @@ Figure&nbsp;4: Seasonal trends for Clark Fork River flows. Red line indicates a 
 <section id="groundwater-table-depth" class="level3">
 <h3 class="anchored" data-anchor-id="groundwater-table-depth">Groundwater Table Depth</h3>
 <p>We evaluated trends in groundwater table depth for each of the 16 wells within the study site using the Mann-Kendall test. All 16 wells have significantly increasing trends and strong seasonality similar to the Clark Fork River streamflow (<a href="#fig-gw-trends" class="quarto-xref">Figure&nbsp;5</a>).</p>
-<div id="cell-fig-gw-trends" class="cell" data-execution_count="89">
+<div id="cell-fig-gw-trends" class="cell" data-execution_count="182">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate trends and p-values and add to the DataFrame</span></span>
@@ -442,7 +447,7 @@ Figure&nbsp;5: Trends in groundwater depth for the 16 wells within the study are
 </div>
 </div>
 <p>Additionally, we calculated the 10th, 50th, and 90th quantile regression lines to show trends in lower, median, and upper values, respectively (<a href="#fig-gw-quantreg" class="quarto-xref">Figure&nbsp;6</a>). The results show strong increasing trends in the upper quantile of each well, suggesting that increases in peak recharge events are largely driving the overall trend in the groundwater. Median and lower quantiles show less of an increasing trend and sometimes even decreasing trends. The decreasing trends in the lower quantiles tend to located in the south and west regions the study site (<a href="#fig-gw-quantreg-lower" class="quarto-xref">Figure&nbsp;7</a>). The difference in trends between the 90th and 10th percentile also suggest an overall increase in interannual variability throughout the time period.</p>
-<div id="cell-fig-gw-quantreg" class="cell" data-execution_count="87">
+<div id="cell-fig-gw-quantreg" class="cell" data-execution_count="183">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
@@ -473,7 +478,7 @@ Figure&nbsp;6: Upper (90th percentile), median (50th percentile, dashed), and lo
 </div>
 </div>
 </div>
-<div id="cell-fig-gw-quantreg-lower" class="cell" data-execution_count="125">
+<div id="cell-fig-gw-quantreg-lower" class="cell" data-execution_count="184">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate slope of quantile regression lines</span></span>
@@ -537,10 +542,170 @@ Figure&nbsp;7: Trends in lower (10th percentile) groundwater depths. The red mar
 </div>
 </div>
 </section>
-<section id="pumping-rates-and-groundwater-depth" class="level3">
-<h3 class="anchored" data-anchor-id="pumping-rates-and-groundwater-depth">Pumping Rates and Groundwater Depth</h3>
-<p>It is clear that the Clark Fork River has significant influence over the trends and seasonality in the groundwater table.</p>
+<section id="groundwater-withdrawals" class="level3">
+<h3 class="anchored" data-anchor-id="groundwater-withdrawals">Groundwater Withdrawals</h3>
+<p>To understand the relationship and timing of groundwater levels, Clark Fork streamflow, and Missoula City pumping rates, we normalize all monthly values to be between zero and one (<a href="#fig-norm-ts" class="quarto-xref">Figure&nbsp;8</a>). We average the normalized groundwater depths across all wells to get one groundwater signal to compare to river flows and pumping rates. The signals are remarkably aligned in their seasonality. Of course, groundwater is a dependent variable, but river flows and pumping rate are independent. Essentially, the City is increasing their pumping at the same time streamflow, and thus groundwater, are at their maximum. This is an opportunitistic situation and one that should be monitored closely if streamflow timing were to shift due to changes in snowpack runoff, as projected by climate change studies <span class="citation" data-cites="whitlock2017MontanaClimate2017">(<a href="#ref-whitlock2017MontanaClimate2017" role="doc-biblioref">Whitlock et al. 2017</a>)</span>. The main difference in these three signals is the lagged decrease in groundwater levels in comparison to the river and pumping rate. Groundwater tends to drop much slower than the two independent variables, suggesting there is some storage effect in the unconfined aquifer.</p>
+<div id="cell-fig-norm-ts" class="cell" data-execution_count="185">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot normalized time seris of gw, q, and pumping rate   </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">4</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'gw_avg'</span>].plot(label<span class="op">=</span><span class="st">'Avg. GW depth'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'Q'</span>].plot(label<span class="op">=</span><span class="st">'CFR Q'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'pumping_rate'</span>].plot(label<span class="op">=</span><span class="st">'Pumping rate'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Normalized Values'</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-norm-ts" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-norm-ts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-norm-ts-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-norm-ts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Normalized timeseries values for average groundwater depth (blue), Clark Fork River streamflow (orange), and Missoula City pumping rates (green). All values are monthly averages.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Similar to the Clark Fork river flows and groundwater level, the City pumping rate also has an overall increasing trend and strong seasonality over the study time period (<a href="#fig-pumping-stl" class="quarto-xref">Figure&nbsp;9</a>). While the overall trend is increasing, there are three smaller trends that are distinct across the time period. From 2000 to 2007 the pumping rate increases, then from 2007 to 2015 the pumping rate decreases, followed by another strong increasing trend from 2015 to 2023.</p>
+<div id="cell-fig-pumping-stl" class="cell" data-execution_count="186">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>res_pr <span class="op">=</span> STL(df_norm[<span class="st">'pumping_rate'</span>], seasonal<span class="op">=</span><span class="dv">13</span>, period<span class="op">=</span><span class="dv">12</span>, trend<span class="op">=</span><span class="dv">39</span>, robust<span class="op">=</span><span class="va">True</span>).fit()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>res_pr.observed.plot(ax<span class="op">=</span>ax[<span class="dv">0</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'Observed'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>res_pr.trend.plot(ax<span class="op">=</span>ax[<span class="dv">1</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'Trend'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>res_pr.seasonal.plot(ax<span class="op">=</span>ax[<span class="dv">2</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">'Seasonal'</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>res_pr.resid.plot(ax<span class="op">=</span>ax[<span class="dv">3</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].set_ylabel(<span class="st">'Residual'</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Seasonal Decomposition of Normalized Pumping Rates'</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(top<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-pumping-stl" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pumping-stl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-pumping-stl-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pumping-stl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: The seasonal decomposition using LOESS of the City of Missoula pumping rates. The top figure is the combined signal, the second to the top is the trend, the third from the top is the seasonality, and the bottom figure is the residual after trend and seasonality are removed.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The most recent 9 years provide an interesting case study. Over this time period, pumping rates have strongly increased and river flows have remained around the same (slight increase), yet the groundwater levels from the majority of the wells has either decreased or is no longer statistically significant (<a href="#fig-gw-recent" class="quarto-xref">Figure&nbsp;10</a>). This suggests that there are other factors influencing groundwater levels, most likely groundwater withdrawals.</p>
+<div id="cell-fig-gw-recent" class="cell" data-execution_count="187">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rec_mask <span class="op">=</span> (df_norm.index <span class="op">&gt;=</span> <span class="st">'2014-10-01'</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_rec <span class="op">=</span> df_norm.loc[rec_mask]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_rec <span class="op">=</span> df_rec.drop(columns<span class="op">=</span>[<span class="st">'Q'</span>, <span class="st">'pumping_rate'</span>, <span class="st">'gw_avg'</span>])</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>df_rec_melt <span class="op">=</span> df_rec.reset_index().melt(id_vars<span class="op">=</span><span class="st">'index'</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>df_rec_melt[<span class="st">'time'</span>] <span class="op">=</span> pd.to_datetime(df_rec_melt[<span class="st">'index'</span>])</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>df_rec_melt.drop(columns<span class="op">=</span>[<span class="st">'index'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df_rec_melt.rename(columns<span class="op">=</span>{<span class="st">'variable'</span>:<span class="st">'gwic_id'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt dataframe</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>df_rec_trend <span class="op">=</span> df_rec_melt.copy()</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>df_rec_trend[<span class="st">'timestamp'</span>] <span class="op">=</span> df_rec_trend[<span class="st">'time'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.timestamp() <span class="cf">if</span> pd.notnull(x) <span class="cf">else</span> x)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the data by the 'variable' column and apply the 'get_trend' function</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>rec_trends <span class="op">=</span> df_rec_trend.groupby(<span class="st">'gwic_id'</span>).<span class="bu">apply</span>(viz.get_mk_trend)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the 'trends' DataFrame with the 'df_trend' DataFrame</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>df_rec_trend <span class="op">=</span> df_rec_trend.join(rec_trends, on<span class="op">=</span><span class="st">'gwic_id'</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df_rec_trend, col<span class="op">=</span><span class="st">'gwic_id'</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, sharey<span class="op">=</span><span class="va">False</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the plot_data_and_trendline function to the FacetGrid</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(viz.plot_data_and_trendline, mann_kendall<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'Norm. GW Depth'</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the x-tick labels on all subplots</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels():</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        label.set_rotation(<span class="dv">45</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        label.set_horizontalalignment(<span class="st">'right'</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-gw-recent" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gw-recent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-gw-recent-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-recent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: The most recent 9-years of groundwater level data with trends (significant and non-significant).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In order to understand how withdrawals may be impacting groundwater levels over the entire time period, we remove the normalized trend in river flow from the ground water signal at all wells (<a href="#fig-gw-qremoved" class="quarto-xref">Figure&nbsp;11</a>). Once the river flow trend is removed, changes in groundwater depth are shifted from increasing to decreasing in 14 of the 16 wells. This suggests that if the river flows were not increasing over this time period, groundwater trends would likely be decreasing. Thus, the river is masking the decreasing trends in groundwater and given that there is no evidence for an increasing trend in river flow to continue into the future, it is important to consider what can be done now to minimize these underlying changes in groundwater level.</p>
+<div id="cell-fig-gw-qremoved" class="cell" data-execution_count="236">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonally decompose and melt</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>res_q_norm <span class="op">=</span> STL(q_norm, seasonal<span class="op">=</span><span class="dv">13</span>, period<span class="op">=</span><span class="dv">12</span>, robust<span class="op">=</span><span class="va">True</span>, trend<span class="op">=</span><span class="dv">39</span>).fit()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df_corr <span class="op">=</span> df_norm.drop(columns<span class="op">=</span>[<span class="st">'Q'</span>, <span class="st">'pumping_rate'</span>, <span class="st">'gw_avg'</span>])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>df_corr <span class="op">=</span> df_corr.sub(res_q_norm.trend, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>df_corr_melt <span class="op">=</span> df_corr.reset_index().melt(id_vars<span class="op">=</span><span class="st">'index'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>df_corr_melt[<span class="st">'time'</span>] <span class="op">=</span> pd.to_datetime(df_corr_melt[<span class="st">'index'</span>])</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>df_corr_melt.drop(columns<span class="op">=</span>[<span class="st">'index'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>df_corr_melt.rename(columns<span class="op">=</span>{<span class="st">'variable'</span>: <span class="st">'gwic_id'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>df_corr_trend <span class="op">=</span> df_corr_melt.copy()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>df_corr_trend[<span class="st">'timestamp'</span>] <span class="op">=</span> df_corr_trend[<span class="st">'time'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.timestamp() <span class="cf">if</span> pd.notnull(x) <span class="cf">else</span> x)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the data by the 'variable' column and apply the 'get_trend' function</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>corr_trends <span class="op">=</span> df_corr_trend.groupby(<span class="st">'gwic_id'</span>).<span class="bu">apply</span>(viz.get_mk_trend)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the 'trends' DataFrame with the 'df_trend' DataFrame</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>df_corr_trend <span class="op">=</span> df_corr_trend.join(corr_trends, on<span class="op">=</span><span class="st">'gwic_id'</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df_corr_trend, col<span class="op">=</span><span class="st">'gwic_id'</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, sharey<span class="op">=</span><span class="va">False</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the plot_data_and_trendline function to the FacetGrid</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(viz.plot_data_and_trendline, mann_kendall<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'Norm. GW Depths'</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the x-tick labels on all subplots</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels():</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        label.set_rotation(<span class="dv">45</span>)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        label.set_horizontalalignment(<span class="st">'right'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-gw-qremoved" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gw-qremoved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-gw-qremoved-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-qremoved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Trends in groundwater depth after the normalized Clark Fork River has been removed.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -553,6 +718,9 @@ Mann, Henry B. 1945. <span>“Nonparametric Tests Against Trend.”</span> <em>E
 </div>
 <div id="ref-tallmanSourcesWaterCaptured2005" class="csl-entry" role="listitem">
 Tallman, Amelia. 2005. <span>“Sources of Water Captured by Municipal Supply Wells in a Highly Conductive Aquifer Western <span>Montana</span>.”</span> <em>Graduate Student Theses, Dissertations, &amp; Professional Papers</em>, January.
+</div>
+<div id="ref-whitlock2017MontanaClimate2017" class="csl-entry" role="listitem">
+Whitlock, Cathy, Wyatt F Cross, Bruce D Maxwell, Nick Silverman, and Alisa A Wade. 2017. <span>“2017 <span>Montana Climate Assessment</span>: <span>Stakeholder</span> Driven, Science Informed,”</span> September, 1–269. <a href="https://doi.org/10.15788/M2WW8W">https://doi.org/10.15788/M2WW8W</a>.
 </div>
 </div>
 </section>
