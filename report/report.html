@@ -22,40 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -179,66 +145,6 @@ window.Quarto = {
 </header>
 
 
-<div id="ec2a500c-5a6b-4789-9daa-18875801f7df" class="cell" data-execution_count="92">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'/home/nick/workspace/zoo-aquifer'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> contextily <span class="im">as</span> ctx</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Point</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.seasonal <span class="im">import</span> STL</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.seasonal <span class="im">import</span> seasonal_decompose</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymannkendall <span class="im">as</span> mk</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils <span class="im">import</span> viz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="c888d71b" class="cell" data-execution_count="63">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set notebook parameters</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> <span class="st">'1999-10-01'</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> <span class="st">'2023-09-30'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="e4707a7a-b05a-42f9-8256-4ade706c7678" class="cell" data-execution_count="217">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bring in data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../data/missoula_valley_wells_imputed_qreg.csv'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> pd.read_csv(<span class="st">'../data/missoula_valley_monitored_wells.csv'</span>, parse_dates<span class="op">=</span>[<span class="st">'time'</span>], index_col<span class="op">=</span><span class="st">'time'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[(df[<span class="st">'time'</span>] <span class="op">&gt;=</span> start_date) <span class="op">&amp;</span> (df[<span class="st">'time'</span>] <span class="op">&lt;=</span> end_date)]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_static <span class="op">=</span> pd.read_csv(<span class="st">'../data/static_variables.csv'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df_norm <span class="op">=</span> pd.read_csv(<span class="st">'../data/dynamic_variables_all_normalized.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df_norm <span class="op">=</span> df_norm[(df_norm.index <span class="op">&gt;=</span> start_date) <span class="op">&amp;</span> (df_norm.index <span class="op">&lt;=</span> end_date)]</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Format streamflow data</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> df[[<span class="st">'time'</span>, <span class="st">'Q'</span>]]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>q.set_index(<span class="st">'time'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>q.index <span class="op">=</span> pd.to_datetime(q.index)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>q_norm <span class="op">=</span> df_norm[<span class="st">'Q'</span>]</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Format groundwater data</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'gw_avg'</span>] <span class="op">=</span> df_norm.iloc[:, <span class="dv">2</span>:].mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>df_raw <span class="op">=</span> <span class="op">-</span>df_raw</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>depth_cols <span class="op">=</span> [i <span class="cf">for</span> i <span class="kw">in</span> df.columns <span class="cf">if</span> <span class="kw">not</span> i <span class="kw">in</span> [<span class="st">'time'</span>, <span class="st">'Q'</span>, <span class="st">'pumping_rate'</span>]]</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> depth_cols:</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    df[col] <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt groundwater data</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>df_melt <span class="op">=</span> df.drop(columns<span class="op">=</span><span class="st">'Q'</span>).melt(id_vars<span class="op">=</span><span class="st">'time'</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>df_melt[<span class="st">'time'</span>] <span class="op">=</span> pd.to_datetime(df_melt[<span class="st">'time'</span>])</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>df_melt.rename(columns<span class="op">=</span>{<span class="st">'variable'</span>:<span class="st">'gwic_id'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="study-area" class="level3">
@@ -259,23 +165,6 @@ Figure&nbsp;1: The study site including the 16 monitoring wells used in the anal
 <h3 class="anchored" data-anchor-id="data-imputation">Data Imputation</h3>
 <p>Historical groundwater measurements from the 16 sites were taken sporadically and inconsistently (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;2</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We gap-filled the data using a mulitple linear regression imputation method based on the Clark Fork River monthly average flow and the day of the year (i.e.&nbsp;last day of the month) to create consistent monthly data across all water years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, and seasonal trend decomposition using LOESS (STL) by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression data imputation method proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared).</p>
 <div id="cell-fig-gw-imputation" class="cell" data-execution_count="178">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">6</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> sns.heatmap(df_raw.transpose(), </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                  cmap<span class="op">=</span><span class="st">'viridis'</span>, </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                  cbar<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                  linewidth<span class="op">=</span><span class="fl">0.5</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                  ax<span class="op">=</span>ax, </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                  cbar_kws<span class="op">=</span>{<span class="st">'label'</span>: <span class="st">'depth (ft)'</span>})</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>xdates <span class="op">=</span> df_raw.index.strftime(<span class="st">'%Y-%m'</span>).sort_values().unique()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>step <span class="op">=</span> <span class="dv">12</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'GWIC ID'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">''</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(np.arange(<span class="dv">0</span>, <span class="bu">len</span>(xdates), step<span class="op">=</span>step))</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(xdates[::step], rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-gw-imputation" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -297,25 +186,6 @@ Figure&nbsp;2: The groundwater data points for each well before imputation. Colo
 <h3 class="anchored" data-anchor-id="clark-fork-river">Clark Fork River</h3>
 <p>The Clark Fork River serves as the main source for aquifer recharge in the Missoula Valley <span class="citation" data-cites="tallmanSourcesWaterCaptured2005">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>)</span>. While other inputs exist, we focus almost exclusively on the Clark Fork due to the overall magnitude relative to other inputs, and the high temporal correlation with one another that all the inputs exhibit [CITE Johnnie analysis]. A seasonal decomposition using LOESS (<a href="#fig-cfr-stl" class="quarto-xref">Figure&nbsp;3</a>) shows that there has been a consistent increasing trend in monthly average flows over the study period (2000-2023). In addition, as expected, there is a strong seasonality component with peak flows coming in late spring and baseflows in late summer and early fall.</p>
 <div id="cell-fig-cfr-stl" class="cell" data-execution_count="208">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>stl_q <span class="op">=</span> STL(q, seasonal<span class="op">=</span><span class="dv">13</span>, period<span class="op">=</span><span class="dv">12</span>, robust<span class="op">=</span><span class="va">True</span>, trend<span class="op">=</span><span class="dv">39</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>res_q <span class="op">=</span> stl_q.fit()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>res_q.observed.plot(ax<span class="op">=</span>ax[<span class="dv">0</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'Observed'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>res_q.trend.plot(ax<span class="op">=</span>ax[<span class="dv">1</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'Trend'</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>res_q.seasonal.plot(ax<span class="op">=</span>ax[<span class="dv">2</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">'Seasonal'</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>res_q.resid.plot(ax<span class="op">=</span>ax[<span class="dv">3</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].set_ylabel(<span class="st">'Residual'</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Seasonal Decomposition of CFR Streamflow'</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(top<span class="op">=</span><span class="fl">0.95</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-cfr-stl" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -331,63 +201,6 @@ Figure&nbsp;3: Seasonal decomposition of the Clark Fork River monthly streamflow
 </div>
 <p>We investigate the trend further using a Mann-Kendall test (<span class="citation" data-cites="mannNonparametricTestsTrend1945">Mann (<a href="#ref-mannNonparametricTestsTrend1945" role="doc-biblioref">1945</a>)</span>, <span class="citation" data-cites="kendallRankCorrelationMethods1975">Kendall (<a href="#ref-kendallRankCorrelationMethods1975" role="doc-biblioref">1975</a>)</span>), which avoids assumptions of normality and independence. The results indicate a statistically significant (<span class="math inline">\(p&lt;0.5\)</span>) increasing trend of 24 cfs/month. We further break down the trend analysis into seasons: winter (December, January, February), spring (March, April, May), summer (June, July, August), and fall (September, October, November) (<a href="#fig-cfr-seas-trends" class="quarto-xref">Figure&nbsp;4</a>). All four seasons have increasing trends, although the summer season’s trend is not statistically significant at the <span class="math inline">\(p&lt;0.5\)</span> level.</p>
 <div id="cell-fig-cfr-seas-trends" class="cell" data-execution_count="181">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> q.assign(season <span class="op">=</span> q.index.month.<span class="bu">map</span>({</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">12</span>: <span class="st">'Winter'</span>, <span class="dv">1</span>: <span class="st">'Winter'</span>, <span class="dv">2</span>: <span class="st">'Winter'</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">3</span>: <span class="st">'Spring'</span>, <span class="dv">4</span>: <span class="st">'Spring'</span>, <span class="dv">5</span>: <span class="st">'Spring'</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">6</span>: <span class="st">'Summer'</span>, <span class="dv">7</span>: <span class="st">'Summer'</span>, <span class="dv">8</span>: <span class="st">'Summer'</span>, </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">9</span>: <span class="st">'Fall'</span>, <span class="dv">10</span>: <span class="st">'Fall'</span>, <span class="dv">11</span>: <span class="st">'Fall'</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>q_seas <span class="op">=</span> q.groupby(<span class="st">'season'</span>).resample(<span class="st">'Y'</span>)[<span class="st">'Q'</span>].mean().reset_index([<span class="st">'season'</span>])</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>q_seas.index <span class="op">=</span> q_seas.index.strftime(<span class="st">'%Y'</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(q_seas.reset_index(), col<span class="op">=</span><span class="st">'season'</span>, col_wrap<span class="op">=</span><span class="dv">2</span>, sharey<span class="op">=</span><span class="va">True</span>, sharex<span class="op">=</span><span class="va">True</span>, height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>g.<span class="bu">map</span>(sns.barplot, <span class="st">'time'</span>,<span class="st">'Q'</span>, order<span class="op">=</span>q_seas.index.unique())</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'Mean seasonal flow (cfs)'</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Look for trends in seasons</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>mk_seas_w <span class="op">=</span> mk.original_test(q_seas[<span class="st">'Q'</span>].where(q_seas[<span class="st">'season'</span>] <span class="op">==</span> <span class="st">'Winter'</span>).dropna())</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>mk_seas_sp <span class="op">=</span> mk.original_test(q_seas[<span class="st">'Q'</span>].where(q_seas[<span class="st">'season'</span>] <span class="op">==</span> <span class="st">'Spring'</span>).dropna())</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>mk_seas_su <span class="op">=</span> mk.original_test(q_seas[<span class="st">'Q'</span>].where(q_seas[<span class="st">'season'</span>] <span class="op">==</span> <span class="st">'Summer'</span>).dropna())</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>mk_seas_f <span class="op">=</span> mk.original_test(q_seas[<span class="st">'Q'</span>].where(q_seas[<span class="st">'season'</span>] <span class="op">==</span> <span class="st">'Fall'</span>).dropna())</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>pvals <span class="op">=</span> [mk_seas_f.p, mk_seas_sp.p, mk_seas_su.p, mk_seas_w.p]</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>ms <span class="op">=</span> [mk_seas_f.slope, mk_seas_sp.slope, mk_seas_su.slope, mk_seas_w.slope]</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> <span class="dv">24</span> </span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>pts1 <span class="op">=</span> [[x1, x2], </span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        [x1, x2], </span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        [x1, x2], </span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        [x1, x2]] </span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>pts2 <span class="op">=</span> [[mk_seas_f.slope<span class="op">*</span>x1 <span class="op">+</span> mk_seas_f.intercept, mk_seas_f.slope<span class="op">*</span>x2 <span class="op">+</span> mk_seas_f.intercept], </span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        [mk_seas_sp.slope<span class="op">*</span>x1 <span class="op">+</span> mk_seas_sp.intercept, mk_seas_sp.slope<span class="op">*</span>x2 <span class="op">+</span> mk_seas_sp.intercept], </span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        [mk_seas_su.slope<span class="op">*</span>x1 <span class="op">+</span> mk_seas_su.intercept, mk_seas_su.slope<span class="op">*</span>x2 <span class="op">+</span> mk_seas_su.intercept], </span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        [mk_seas_w.slope<span class="op">*</span>x1 <span class="op">+</span> mk_seas_w.intercept, mk_seas_w.slope<span class="op">*</span>x2 <span class="op">+</span> mk_seas_w.intercept]] </span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the x-tick labels, add text, and trendlines on all subplots</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, ax <span class="kw">in</span> <span class="bu">enumerate</span>(g.axes.flat):</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="ss">f"trend: </span><span class="sc">{</span>ms[i]<span class="sc">:.3f}</span><span class="ss"> cfs/sea."</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    pval <span class="op">=</span> <span class="ss">f"p-value: </span><span class="sc">{</span>pvals[i]<span class="sc">:.3f}</span><span class="ss">"</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pvals[i] <span class="op">&gt;</span> <span class="fl">0.05</span>:</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="st">'black'</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> pvals[i] <span class="op">&lt;=</span> <span class="fl">0.05</span>:</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        c <span class="op">=</span> <span class="st">'red'</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="dv">0</span>, <span class="dv">9000</span>, pval)</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="dv">0</span>, <span class="dv">9700</span>, m)</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    ax.plot(pts1[i], pts2[i], color<span class="op">=</span>c)</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ax.text(1, 8000, str(i))</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">''</span>)</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels():</span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>        label.set_rotation(<span class="dv">45</span>)</span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>        label.set_horizontalalignment(<span class="st">'right'</span>)</span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels()[::<span class="dv">2</span>]:</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>        label.set_visible(<span class="va">False</span>)</span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-cfr-seas-trends" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -406,33 +219,6 @@ Figure&nbsp;4: Seasonal trends for Clark Fork River flows. Red line indicates a 
 <h3 class="anchored" data-anchor-id="groundwater-table-depth">Groundwater Table Depth</h3>
 <p>We evaluated trends in groundwater table depth for each of the 16 wells within the study site using the Mann-Kendall test. All 16 wells have significantly increasing trends and strong seasonality similar to the Clark Fork River streamflow (<a href="#fig-gw-trends" class="quarto-xref">Figure&nbsp;5</a>).</p>
 <div id="cell-fig-gw-trends" class="cell" data-execution_count="182">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate trends and p-values and add to the DataFrame</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_trend <span class="op">=</span> df_melt.copy()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df_trend[<span class="st">'timestamp'</span>] <span class="op">=</span> df_trend[<span class="st">'time'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.timestamp() <span class="cf">if</span> pd.notnull(x) <span class="cf">else</span> x)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the data by the 'variable' column and apply the 'get_trend' function</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> df_trend.groupby(<span class="st">'gwic_id'</span>).<span class="bu">apply</span>(viz.get_mk_trend)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the 'trends' DataFrame with the 'df_trend' DataFrame</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>df_trend <span class="op">=</span> df_trend.join(trends, on<span class="op">=</span><span class="st">'gwic_id'</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df_trend, col<span class="op">=</span><span class="st">'gwic_id'</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, sharey<span class="op">=</span><span class="va">False</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the plot_data_and_trendline function to the FacetGrid</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(viz.plot_data_and_trendline, mann_kendall<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'Groundwater Depth'</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the x-tick labels on all subplots</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels():</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        label.set_rotation(<span class="dv">45</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        label.set_horizontalalignment(<span class="st">'right'</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-gw-trends" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -448,23 +234,6 @@ Figure&nbsp;5: Trends in groundwater depth for the 16 wells within the study are
 </div>
 <p>Additionally, we calculated the 10th, 50th, and 90th quantile regression lines to show trends in lower, median, and upper values, respectively (<a href="#fig-gw-quantreg" class="quarto-xref">Figure&nbsp;6</a>). The results show strong increasing trends in the upper quantile of each well, suggesting that increases in peak recharge events are largely driving the overall trend in the groundwater. Median and lower quantiles show less of an increasing trend and sometimes even decreasing trends. The decreasing trends in the lower quantiles tend to located in the south and west regions the study site (<a href="#fig-gw-quantreg-lower" class="quarto-xref">Figure&nbsp;7</a>). The difference in trends between the 90th and 10th percentile also suggest an overall increase in interannual variability throughout the time period.</p>
 <div id="cell-fig-gw-quantreg" class="cell" data-execution_count="183">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df_trend, col<span class="op">=</span><span class="st">'gwic_id'</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, sharey<span class="op">=</span><span class="va">False</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the plot_data_and_trendline function to the FacetGrid</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(viz.plot_data_and_quantreg)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'Groundwater Depth (ft.)'</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the x-tick labels on all subplots</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels():</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        label.set_rotation(<span class="dv">45</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        label.set_horizontalalignment(<span class="st">'right'</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-gw-quantreg" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -479,55 +248,6 @@ Figure&nbsp;6: Upper (90th percentile), median (50th percentile, dashed), and lo
 </div>
 </div>
 <div id="cell-fig-gw-quantreg-lower" class="cell" data-execution_count="184">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate slope of quantile regression lines</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gwicids <span class="op">=</span> df_trend[<span class="st">'gwic_id'</span>].unique()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df_quantreg <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">'gwicid'</span>, <span class="st">'quantreg_m1'</span>, <span class="st">'quantreg_m9'</span>, <span class="st">'quantreg_m5'</span>])</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> gwicid <span class="kw">in</span> gwicids:</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> df_trend[df_trend[<span class="st">'gwic_id'</span>] <span class="op">==</span> gwicid]</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    q1, q9, q5 <span class="op">=</span> viz.plot_data_and_quantreg(data, <span class="st">'blue'</span>, quants<span class="op">=</span>[<span class="fl">0.1</span>, <span class="fl">0.9</span>], plot<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    m1, m9, m5 <span class="op">=</span> q1.params.x, q9.params.x, q5.params.x</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    new_data <span class="op">=</span> [gwicid, m1, m9, m5]</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    df_quantreg.loc[<span class="bu">len</span>(df_quantreg)] <span class="op">=</span> new_data</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add trends to spatial dataframe</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>trends.index <span class="op">=</span> trends.index.astype(<span class="st">'int64'</span>)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>df_stat <span class="op">=</span> df_static.merge(trends, left_on<span class="op">=</span><span class="st">'gwicid'</span>, right_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>df_stat[<span class="st">'gwicid'</span>] <span class="op">=</span> df_stat[<span class="st">'gwicid'</span>].astype(<span class="bu">str</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>df_stat <span class="op">=</span> df_stat.merge(df_quantreg, left_on<span class="op">=</span><span class="st">'gwicid'</span>, right_on<span class="op">=</span><span class="st">'gwicid'</span>) </span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to GeoDataFrame</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>df_stat[<span class="st">'geometry'</span>] <span class="op">=</span> [Point(xy) <span class="cf">for</span> xy <span class="kw">in</span> <span class="bu">zip</span>(df_stat.longitude, df_stat.latitude)]</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>gdf_stat <span class="op">=</span> gpd.GeoDataFrame(df_stat, geometry<span class="op">=</span><span class="st">'geometry'</span>, crs<span class="op">=</span><span class="st">'EPSG:4326'</span>)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot map of slope values</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> gdf_stat.plot(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), </span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                   column<span class="op">=</span><span class="st">'quantreg_m1'</span>, </span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                   cmap<span class="op">=</span><span class="st">'coolwarm_r'</span>, </span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                   legend<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>                   edgecolor<span class="op">=</span><span class="st">'black'</span>,</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                   marker<span class="op">=</span><span class="st">'^'</span>,</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                   scheme<span class="op">=</span><span class="st">'User_Defined'</span>,</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                   classification_kwds<span class="op">=</span><span class="bu">dict</span>(bins<span class="op">=</span>[<span class="dv">0</span>]),</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                   s<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Change legend text</span></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>leg_text <span class="op">=</span> [<span class="st">'Decreasing'</span>, <span class="st">'Increasing'</span>]</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>leg <span class="op">=</span> ax.get_legend()</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, l <span class="kw">in</span> <span class="bu">enumerate</span>(leg.get_texts()):</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    l.set_text(leg_text[i])</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>ctx.add_basemap(ax, </span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>                crs<span class="op">=</span>gdf_stat.crs, </span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>                source<span class="op">=</span>ctx.providers.CartoDB.Positron,</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>                zoom<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="co"># cbar = ax.get_figure().get_axes()[1]</span></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co"># cbar.set_ylabel('slope (ft/mo)')</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Groundwater trends in lower (10th %) water table depth in Missoula Valley wells'</span>)</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.set_axis_off()</span></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-gw-quantreg-lower" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -546,17 +266,6 @@ Figure&nbsp;7: Trends in lower (10th percentile) groundwater depths. The red mar
 <h3 class="anchored" data-anchor-id="groundwater-withdrawals">Groundwater Withdrawals</h3>
 <p>To understand the relationship and timing of groundwater levels, Clark Fork streamflow, and Missoula City pumping rates, we normalize all monthly values to be between zero and one (<a href="#fig-norm-ts" class="quarto-xref">Figure&nbsp;8</a>). We average the normalized groundwater depths across all wells to get one groundwater signal to compare to river flows and pumping rates. The signals are remarkably aligned in their seasonality. Of course, groundwater is a dependent variable, but river flows and pumping rate are independent. Essentially, the City is increasing their pumping at the same time streamflow, and thus groundwater, are at their maximum. This is an opportunitistic situation and one that should be monitored closely if streamflow timing were to shift due to changes in snowpack runoff, as projected by climate change studies <span class="citation" data-cites="whitlock2017MontanaClimate2017">(<a href="#ref-whitlock2017MontanaClimate2017" role="doc-biblioref">Whitlock et al. 2017</a>)</span>. The main difference in these three signals is the lagged decrease in groundwater levels in comparison to the river and pumping rate. Groundwater tends to drop much slower than the two independent variables, suggesting there is some storage effect in the unconfined aquifer.</p>
 <div id="cell-fig-norm-ts" class="cell" data-execution_count="185">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot normalized time seris of gw, q, and pumping rate   </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">4</span>))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'gw_avg'</span>].plot(label<span class="op">=</span><span class="st">'Avg. GW depth'</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'Q'</span>].plot(label<span class="op">=</span><span class="st">'CFR Q'</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_norm[<span class="st">'pumping_rate'</span>].plot(label<span class="op">=</span><span class="st">'Pumping rate'</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Normalized Values'</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-norm-ts" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -572,23 +281,6 @@ Figure&nbsp;8: Normalized timeseries values for average groundwater depth (blue)
 </div>
 <p>Similar to the Clark Fork river flows and groundwater level, the City pumping rate also has an overall increasing trend and strong seasonality over the study time period (<a href="#fig-pumping-stl" class="quarto-xref">Figure&nbsp;9</a>). While the overall trend is increasing, there are three smaller trends that are distinct across the time period. From 2000 to 2007 the pumping rate increases, then from 2007 to 2015 the pumping rate decreases, followed by another strong increasing trend from 2015 to 2023.</p>
 <div id="cell-fig-pumping-stl" class="cell" data-execution_count="186">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>res_pr <span class="op">=</span> STL(df_norm[<span class="st">'pumping_rate'</span>], seasonal<span class="op">=</span><span class="dv">13</span>, period<span class="op">=</span><span class="dv">12</span>, trend<span class="op">=</span><span class="dv">39</span>, robust<span class="op">=</span><span class="va">True</span>).fit()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>res_pr.observed.plot(ax<span class="op">=</span>ax[<span class="dv">0</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'Observed'</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>res_pr.trend.plot(ax<span class="op">=</span>ax[<span class="dv">1</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'Trend'</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>res_pr.seasonal.plot(ax<span class="op">=</span>ax[<span class="dv">2</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">'Seasonal'</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>res_pr.resid.plot(ax<span class="op">=</span>ax[<span class="dv">3</span>], legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].set_ylabel(<span class="st">'Residual'</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Seasonal Decomposition of Normalized Pumping Rates'</span>)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(top<span class="op">=</span><span class="fl">0.95</span>)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-pumping-stl" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -604,42 +296,6 @@ Figure&nbsp;9: The seasonal decomposition using LOESS of the City of Missoula pu
 </div>
 <p>The most recent 9 years provide an interesting case study. Over this time period, pumping rates have strongly increased and river flows have remained around the same (slight increase), yet the groundwater levels from the majority of the wells has either decreased or is no longer statistically significant (<a href="#fig-gw-recent" class="quarto-xref">Figure&nbsp;10</a>). This suggests that there are other factors influencing groundwater levels, most likely groundwater withdrawals.</p>
 <div id="cell-fig-gw-recent" class="cell" data-execution_count="187">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rec_mask <span class="op">=</span> (df_norm.index <span class="op">&gt;=</span> <span class="st">'2014-10-01'</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_rec <span class="op">=</span> df_norm.loc[rec_mask]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_rec <span class="op">=</span> df_rec.drop(columns<span class="op">=</span>[<span class="st">'Q'</span>, <span class="st">'pumping_rate'</span>, <span class="st">'gw_avg'</span>])</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>df_rec_melt <span class="op">=</span> df_rec.reset_index().melt(id_vars<span class="op">=</span><span class="st">'index'</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>df_rec_melt[<span class="st">'time'</span>] <span class="op">=</span> pd.to_datetime(df_rec_melt[<span class="st">'index'</span>])</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>df_rec_melt.drop(columns<span class="op">=</span>[<span class="st">'index'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>df_rec_melt.rename(columns<span class="op">=</span>{<span class="st">'variable'</span>:<span class="st">'gwic_id'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt dataframe</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>df_rec_trend <span class="op">=</span> df_rec_melt.copy()</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>df_rec_trend[<span class="st">'timestamp'</span>] <span class="op">=</span> df_rec_trend[<span class="st">'time'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.timestamp() <span class="cf">if</span> pd.notnull(x) <span class="cf">else</span> x)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the data by the 'variable' column and apply the 'get_trend' function</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>rec_trends <span class="op">=</span> df_rec_trend.groupby(<span class="st">'gwic_id'</span>).<span class="bu">apply</span>(viz.get_mk_trend)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the 'trends' DataFrame with the 'df_trend' DataFrame</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>df_rec_trend <span class="op">=</span> df_rec_trend.join(rec_trends, on<span class="op">=</span><span class="st">'gwic_id'</span>)</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df_rec_trend, col<span class="op">=</span><span class="st">'gwic_id'</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, sharey<span class="op">=</span><span class="va">False</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the plot_data_and_trendline function to the FacetGrid</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(viz.plot_data_and_trendline, mann_kendall<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'Norm. GW Depth'</span>)</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the x-tick labels on all subplots</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels():</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        label.set_rotation(<span class="dv">45</span>)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        label.set_horizontalalignment(<span class="st">'right'</span>)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-gw-recent" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -655,40 +311,6 @@ Figure&nbsp;10: The most recent 9-years of groundwater level data with trends (s
 </div>
 <p>In order to understand how withdrawals may be impacting groundwater levels over the entire time period, we remove the normalized trend in river flow from the ground water signal at all wells (<a href="#fig-gw-qremoved" class="quarto-xref">Figure&nbsp;11</a>). Once the river flow trend is removed, changes in groundwater depth are shifted from increasing to decreasing in 14 of the 16 wells. This suggests that if the river flows were not increasing over this time period, groundwater trends would likely be decreasing. Thus, the river is masking the decreasing trends in groundwater and given that there is no evidence for an increasing trend in river flow to continue into the future, it is important to consider what can be done now to minimize these underlying changes in groundwater level.</p>
 <div id="cell-fig-gw-qremoved" class="cell" data-execution_count="236">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seasonally decompose and melt</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>res_q_norm <span class="op">=</span> STL(q_norm, seasonal<span class="op">=</span><span class="dv">13</span>, period<span class="op">=</span><span class="dv">12</span>, robust<span class="op">=</span><span class="va">True</span>, trend<span class="op">=</span><span class="dv">39</span>).fit()</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df_corr <span class="op">=</span> df_norm.drop(columns<span class="op">=</span>[<span class="st">'Q'</span>, <span class="st">'pumping_rate'</span>, <span class="st">'gw_avg'</span>])</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>df_corr <span class="op">=</span> df_corr.sub(res_q_norm.trend, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>df_corr_melt <span class="op">=</span> df_corr.reset_index().melt(id_vars<span class="op">=</span><span class="st">'index'</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>df_corr_melt[<span class="st">'time'</span>] <span class="op">=</span> pd.to_datetime(df_corr_melt[<span class="st">'index'</span>])</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>df_corr_melt.drop(columns<span class="op">=</span>[<span class="st">'index'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>df_corr_melt.rename(columns<span class="op">=</span>{<span class="st">'variable'</span>: <span class="st">'gwic_id'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>df_corr_trend <span class="op">=</span> df_corr_melt.copy()</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>df_corr_trend[<span class="st">'timestamp'</span>] <span class="op">=</span> df_corr_trend[<span class="st">'time'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.timestamp() <span class="cf">if</span> pd.notnull(x) <span class="cf">else</span> x)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Group the data by the 'variable' column and apply the 'get_trend' function</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>corr_trends <span class="op">=</span> df_corr_trend.groupby(<span class="st">'gwic_id'</span>).<span class="bu">apply</span>(viz.get_mk_trend)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the 'trends' DataFrame with the 'df_trend' DataFrame</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>df_corr_trend <span class="op">=</span> df_corr_trend.join(corr_trends, on<span class="op">=</span><span class="st">'gwic_id'</span>)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the FacetGrid plot</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.FacetGrid(df_corr_trend, col<span class="op">=</span><span class="st">'gwic_id'</span>, col_wrap<span class="op">=</span><span class="dv">4</span>, sharey<span class="op">=</span><span class="va">False</span>, sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Map the plot_data_and_trendline function to the FacetGrid</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>g.map_dataframe(viz.plot_data_and_trendline, mann_kendall<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'Norm. GW Depths'</span>)</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the x-tick labels on all subplots</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> g.axes.flat:</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label <span class="kw">in</span> ax.get_xticklabels():</span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        label.set_rotation(<span class="dv">45</span>)</span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        label.set_horizontalalignment(<span class="st">'right'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-gw-qremoved" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
