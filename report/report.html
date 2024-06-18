@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Adaptive Hydrology">
-<meta name="dcterms.date" content="2024-06-05">
+<meta name="dcterms.date" content="2024-06-18">
 
 <title>Missoula Aquifer Sustainability Study</title>
 <style>
@@ -99,7 +99,8 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#methods" id="toc-methods" class="nav-link active" data-scroll-target="#methods">Methods</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
   <li><a href="#study-area" id="toc-study-area" class="nav-link" data-scroll-target="#study-area">Study Area</a></li>
   <li><a href="#data-imputation" id="toc-data-imputation" class="nav-link" data-scroll-target="#data-imputation">Data Imputation</a></li>
@@ -136,7 +137,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 5, 2024</p>
+      <p class="date">June 18, 2024</p>
     </div>
   </div>
   
@@ -148,25 +149,101 @@ window.Quarto = {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The Missoula Aquifer is one of only 64 designated sole source aquifers in the United States.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> As such, it supplies over 75,000 residents, plus businesses, with potable groundwater. Historically, the aquifer has shown incredible resilience to drought and increases in population within the Missoula valley area. There have been no long-term signs of depletion in any of the 27 monitoring wells within the aquifer. This is likely due to the very high transmissivity rates, location within the Clark Fork and Bitterroot watersheds, reasonable historical growth rates of the surrounding population, and only mild changes in historical climate.</p>
+<p>Due to the unconfined nature of the aquifer and the high transmissivity rates of the substrate, the upstream inflows, and downstream outflows, of the aquifer are largely driven by the Clark Fork River<span class="citation" data-cites="tallmanSourcesWaterCaptured2005 millerNumericalFlowModel1991">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>; <a href="#ref-millerNumericalFlowModel1991" role="doc-biblioref">Miller 1991</a>)</span>. In fact, according to previous studies, the Clark Fork River provides over 80% of the annual aquifer recharge (<a href="#tbl-miller" class="quarto-xref">Table&nbsp;1</a>). Thus, it is fair to say that any long-term changes in streamflow will likely have far reaching impacts to the recharge and overall sustainability of the aquifer.</p>
+<div class="cell" data-execution_count="30">
+<div id="tbl-miller" class="cell quarto-float anchored" data-execution_count="30">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-miller-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Missoula aquifer source of average annual inflow according to <span class="citation" data-cites="millerNumericalFlowModel1991">Miller (<a href="#ref-millerNumericalFlowModel1991" role="doc-biblioref">1991</a>)</span>.
+</figcaption>
+<div aria-describedby="tbl-miller-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+<style type="text/css">
+</style>
+
+<table id="T_1db8a" class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th id="T_1db8a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Source</th>
+<th id="T_1db8a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Inflow (acre-ft)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_1db8a_row0_col0" class="data row0 col0">Clark Fork River</td>
+<td id="T_1db8a_row0_col1" class="data row0 col1">192000</td>
+</tr>
+<tr class="even">
+<td id="T_1db8a_row1_col0" class="data row1 col0">Creek Drainages and Tertiary Hillsides</td>
+<td id="T_1db8a_row1_col1" class="data row1 col1">19000</td>
+</tr>
+<tr class="odd">
+<td id="T_1db8a_row2_col0" class="data row2 col0">Lateral Underflow (Bitterroot and Hellgate)</td>
+<td id="T_1db8a_row2_col1" class="data row2 col1">21000</td>
+</tr>
+<tr class="even">
+<td id="T_1db8a_row3_col0" class="data row3 col0">Total</td>
+<td id="T_1db8a_row3_col1" class="data row3 col1">232000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Climate change is expected to impact the Clark Fork River in numerous ways over the coming decades <span class="citation" data-cites="whitlock2017MontanaClimate2017">(<a href="#ref-whitlock2017MontanaClimate2017" role="doc-biblioref">Whitlock et al. 2017</a>)</span>. Average annual discharge is projected to increase, although there is large uncertainty around this projection. With higher confidence, there is expected to be a shift in the timing of peak runoff leading towards lower baseflows in the summer months. In addition, when future drought occurs, the severity is expected to increase, resulting in extended periods of drier than normal conditions <span class="citation" data-cites="montanadnrcMontanaDroughtManagement2023">(<a href="#ref-montanadnrcMontanaDroughtManagement2023" role="doc-biblioref">Montana DNRC 2023</a>)</span>. These projected changes will undoubtedly affect the groundwater of the Missoula Aquifer and the impact of the local extractions for drinking water, irrigation, and industrial purposes.</p>
+<p>From 2000 to 2024 the Missoula area population has increased from 57,000 to 78,000, respectively.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Using the standard assumption of 160 gallons/day/person, we estimate that water use has increased from 10,200 af to 14,100 af over this same time period (<a href="#fig-water-use" class="quarto-xref">Figure&nbsp;1</a>). Consequently, according to the Montana Ground Water Information Center<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> there are currently over 3,500 wells listed in the Missoula area. Of those wells, 247 are labeled as “public water” which includes the City of Missoula’s water supply (<a href="#fig-extract-map" class="quarto-xref">Figure&nbsp;2</a>). Population in the Missoula area is expected to continue to increase over the next several decades<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> likely leading to more wells and higher extraction rates to sustain this growth. In spite of the historical resilience of the aquifer to these changes, many questions still remain unanswered.</p>
+<div id="cell-fig-water-use" class="cell" data-execution_count="65">
+<div class="cell-output cell-output-display">
+<div id="fig-water-use" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-water-use-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-water-use-output-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-water-use-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Estimated water use based on the U.S. Census population data within the Missoula area and an average consumption of 160 gallons/day/person.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="fig-extract-map" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-extract-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./images/missoula_valley_all_extractions.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-extract-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: All extraction points within the Missoula area.
+</figcaption>
+</figure>
+</div>
+<p>What if climate change and population growth converge to maximize stress on the aquifer? While these kinds of scenarios are not determined, they are all well within the realm of realistic possibilities, perhaps even probable. Given the overall resilience that we have seen in the past, it is possible that the aquifer can withstand these stressors and continue to deliver clean and plentiful potable water to the Missoula community in perpetuity. However, to date, no one has studied these different scenarios to make sure that our future water resources are protected. In this analysis, we first evaluate the long-term historial trends in Clark Fork River discharge, City of Missoula pumping rates, and Missoula Aquifer water table depth. In subsequent analyses (not inlcuded in this preliminary report) we plan to specifically study the impacts of plausible future scenarios on the Aquifer to identify critical tipping points and mitigation strategies.</p>
+</section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="study-area" class="level3">
 <h3 class="anchored" data-anchor-id="study-area">Study Area</h3>
-<p>The study area includes the greater Missoula area. Within this region there are 16 monitoring wells used in the analysis <a href="#fig-site-map" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<p>The study area includes the greater Missoula area. Within this region there are 16 monitoring wells used in the analysis <a href="#fig-site-map" class="quarto-xref">Figure&nbsp;3</a>.</p>
 <div id="fig-site-map" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-site-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="./images/site_map.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-site-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: The study site including the 16 monitoring wells used in the analysis.
+Figure&nbsp;3: The study site including the 16 monitoring wells used in the analysis.
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="data-imputation" class="level3">
 <h3 class="anchored" data-anchor-id="data-imputation">Data Imputation</h3>
-<p>Historical groundwater measurements from the 16 sites were taken sporadically and inconsistently (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;2</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We gap-filled the data using a mulitple linear regression imputation method based on the Clark Fork River monthly average flow and the day of the year (i.e.&nbsp;last day of the month) to create consistent monthly data across all water years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, and seasonal trend decomposition using LOESS (STL) by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression data imputation method proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared).</p>
+<p>Historical groundwater measurements from the 16 sites were taken sporadically and inconsistently (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;4</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We gap-filled the data using a mulitple linear regression imputation method based on the Clark Fork River monthly average flow and the day of the year (i.e.&nbsp;last day of the month) to create consistent monthly data across all water years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, and seasonal trend decomposition using LOESS (STL) by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression data imputation method proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared).</p>
 <div id="cell-fig-gw-imputation" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-imputation" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -175,7 +252,7 @@ Figure&nbsp;1: The study site including the 16 monitoring wells used in the anal
 <img src="report_files/figure-html/fig-gw-imputation-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-imputation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: The groundwater data points for each well before imputation. Color represents the value of the measurement (i.e.&nbsp;depth below ground).
+Figure&nbsp;4: The groundwater data points for each well before imputation. Color represents the value of the measurement (i.e.&nbsp;depth below ground).
 </figcaption>
 </figure>
 </div>
@@ -187,7 +264,7 @@ Figure&nbsp;2: The groundwater data points for each well before imputation. Colo
 <h2 class="anchored" data-anchor-id="historical-analysis">Historical Analysis</h2>
 <section id="clark-fork-river" class="level3">
 <h3 class="anchored" data-anchor-id="clark-fork-river">Clark Fork River</h3>
-<p>The Clark Fork River serves as the main source for aquifer recharge in the Missoula Valley <span class="citation" data-cites="tallmanSourcesWaterCaptured2005">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>)</span>. While other inputs exist, we focus almost exclusively on the Clark Fork due to the overall magnitude relative to other inputs, and the high temporal correlation with one another that all the inputs exhibit [CITE Johnnie analysis]. A seasonal decomposition using LOESS (<a href="#fig-cfr-stl" class="quarto-xref">Figure&nbsp;3</a>) shows that there has been a consistent increasing trend in monthly average flows over the study period (2000-2023). In addition, as expected, there is a strong seasonality component with peak flows coming in late spring and baseflows in late summer and early fall.</p>
+<p>The Clark Fork River serves as the main source for aquifer recharge in the Missoula Valley <span class="citation" data-cites="tallmanSourcesWaterCaptured2005">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>)</span>. While other inputs exist, we focus almost exclusively on the Clark Fork due to the overall magnitude relative to other inputs, and the high temporal correlation with one another that all the inputs exhibit [CITE Johnnie analysis]. A seasonal decomposition using LOESS (<a href="#fig-cfr-stl" class="quarto-xref">Figure&nbsp;5</a>) shows that there has been a consistent increasing trend in monthly average flows over the study period (2000-2023). In addition, as expected, there is a strong seasonality component with peak flows coming in late spring and baseflows in late summer and early fall.</p>
 <div id="cell-fig-cfr-stl" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div id="fig-cfr-stl" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -196,13 +273,13 @@ Figure&nbsp;2: The groundwater data points for each well before imputation. Colo
 <img src="report_files/figure-html/fig-cfr-stl-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cfr-stl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Seasonal decomposition of the Clark Fork River monthly streamflows. The top figure is the full stremflow signal, the second from the top shows the trend over the time, the third from the top figure is the seasonal signal, and the bottom figure is the residual after the trend and seasonal components have been removed.
+Figure&nbsp;5: Seasonal decomposition of the Clark Fork River monthly streamflows. The top figure is the full stremflow signal, the second from the top shows the trend over the time, the third from the top figure is the seasonal signal, and the bottom figure is the residual after the trend and seasonal components have been removed.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>We investigate the trend further using a Mann-Kendall test (<span class="citation" data-cites="mannNonparametricTestsTrend1945">Mann (<a href="#ref-mannNonparametricTestsTrend1945" role="doc-biblioref">1945</a>)</span>, <span class="citation" data-cites="kendallRankCorrelationMethods1975">Kendall (<a href="#ref-kendallRankCorrelationMethods1975" role="doc-biblioref">1975</a>)</span>), which avoids assumptions of normality and independence. The results indicate a statistically significant (<span class="math inline">\(p&lt;0.5\)</span>) increasing trend of 24 cfs/month. We further break down the trend analysis into seasons: winter (December, January, February), spring (March, April, May), summer (June, July, August), and fall (September, October, November) (<a href="#fig-cfr-seas-trends" class="quarto-xref">Figure&nbsp;4</a>). All four seasons have increasing trends, although the summer season’s trend is not statistically significant at the <span class="math inline">\(p&lt;0.5\)</span> level.</p>
+<p>We investigate the trend further using a Mann-Kendall test (<span class="citation" data-cites="mannNonparametricTestsTrend1945">Mann (<a href="#ref-mannNonparametricTestsTrend1945" role="doc-biblioref">1945</a>)</span>, <span class="citation" data-cites="kendallRankCorrelationMethods1975">Kendall (<a href="#ref-kendallRankCorrelationMethods1975" role="doc-biblioref">1975</a>)</span>), which avoids assumptions of normality and independence. The results indicate a statistically significant (<span class="math inline">\(p&lt;0.5\)</span>) increasing trend of 24 cfs/month. We further break down the trend analysis into seasons: winter (December, January, February), spring (March, April, May), summer (June, July, August), and fall (September, October, November) (<a href="#fig-cfr-seas-trends" class="quarto-xref">Figure&nbsp;6</a>). All four seasons have increasing trends, although the summer season’s trend is not statistically significant at the <span class="math inline">\(p&lt;0.5\)</span> level.</p>
 <div id="cell-fig-cfr-seas-trends" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div id="fig-cfr-seas-trends" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -211,7 +288,7 @@ Figure&nbsp;3: Seasonal decomposition of the Clark Fork River monthly streamflow
 <img src="report_files/figure-html/fig-cfr-seas-trends-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cfr-seas-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Seasonal trends for Clark Fork River flows. Red line indicates a statistically significant (<span class="math inline">\(p&lt;0.05\)</span>) trend.
+Figure&nbsp;6: Seasonal trends for Clark Fork River flows. Red line indicates a statistically significant (<span class="math inline">\(p&lt;0.05\)</span>) trend.
 </figcaption>
 </figure>
 </div>
@@ -220,7 +297,7 @@ Figure&nbsp;4: Seasonal trends for Clark Fork River flows. Red line indicates a 
 </section>
 <section id="groundwater-table-depth" class="level3">
 <h3 class="anchored" data-anchor-id="groundwater-table-depth">Groundwater Table Depth</h3>
-<p>We evaluated trends in groundwater table depth for each of the 16 wells within the study site using the Mann-Kendall test. All 16 wells have significantly increasing trends and strong seasonality similar to the Clark Fork River streamflow (<a href="#fig-gw-trends" class="quarto-xref">Figure&nbsp;5</a>).</p>
+<p>We evaluated trends in groundwater table depth for each of the 16 wells within the study site using the Mann-Kendall test. All 16 wells have significantly increasing trends and strong seasonality similar to the Clark Fork River streamflow (<a href="#fig-gw-trends" class="quarto-xref">Figure&nbsp;7</a>).</p>
 <div id="cell-fig-gw-trends" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-trends" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -229,13 +306,13 @@ Figure&nbsp;4: Seasonal trends for Clark Fork River flows. Red line indicates a 
 <img src="report_files/figure-html/fig-gw-trends-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Trends in groundwater depth for the 16 wells within the study area. Red line indicates a statistically significant trend (<span class="math inline">\(p&lt;0.05\)</span>).
+Figure&nbsp;7: Trends in groundwater depth for the 16 wells within the study area. Red line indicates a statistically significant trend (<span class="math inline">\(p&lt;0.05\)</span>).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Additionally, we calculated the 10th, 50th, and 90th quantile regression lines to show trends in lower, median, and upper values, respectively (<a href="#fig-gw-quantreg" class="quarto-xref">Figure&nbsp;6</a>). The results show strong increasing trends in the upper quantile of each well, suggesting that increases in peak recharge events are largely driving the overall trend in the groundwater. Median and lower quantiles show less of an increasing trend and sometimes even decreasing trends. The decreasing trends in the lower quantiles tend to located in the south and west regions the study site (<a href="#fig-gw-quantreg-lower" class="quarto-xref">Figure&nbsp;7</a>). The difference in trends between the 90th and 10th percentile also suggest an overall increase in interannual variability throughout the time period.</p>
+<p>Additionally, we calculated the 10th, 50th, and 90th quantile regression lines to show trends in lower, median, and upper values, respectively (<a href="#fig-gw-quantreg" class="quarto-xref">Figure&nbsp;8</a>). The results show strong increasing trends in the upper quantile of each well, suggesting that increases in peak recharge events are largely driving the overall trend in the groundwater. Median and lower quantiles show less of an increasing trend and sometimes even decreasing trends. The decreasing trends in the lower quantiles tend to located in the south and west regions the study site (<a href="#fig-gw-quantreg-lower" class="quarto-xref">Figure&nbsp;9</a>). The difference in trends between the 90th and 10th percentile also suggest an overall increase in interannual variability throughout the time period.</p>
 <div id="cell-fig-gw-quantreg" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-quantreg" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -244,7 +321,7 @@ Figure&nbsp;5: Trends in groundwater depth for the 16 wells within the study are
 <img src="report_files/figure-html/fig-gw-quantreg-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-quantreg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Upper (90th percentile), median (50th percentile, dashed), and lower (10th percentile) trends in groundwater data. The 90th percentile trends are consistently the largest, suggesting increases in peak recharge events and interannual variability.
+Figure&nbsp;8: Upper (90th percentile), median (50th percentile, dashed), and lower (10th percentile) trends in groundwater data. The 90th percentile trends are consistently the largest, suggesting increases in peak recharge events and interannual variability.
 </figcaption>
 </figure>
 </div>
@@ -258,7 +335,7 @@ Figure&nbsp;6: Upper (90th percentile), median (50th percentile, dashed), and lo
 <img src="report_files/figure-html/fig-gw-quantreg-lower-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-quantreg-lower-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Trends in lower (10th percentile) groundwater depths. The red markers indicate decreasing trends. The blue markers indicate increasing trends.
+Figure&nbsp;9: Trends in lower (10th percentile) groundwater depths. The red markers indicate decreasing trends. The blue markers indicate increasing trends.
 </figcaption>
 </figure>
 </div>
@@ -267,7 +344,7 @@ Figure&nbsp;7: Trends in lower (10th percentile) groundwater depths. The red mar
 </section>
 <section id="groundwater-withdrawals" class="level3">
 <h3 class="anchored" data-anchor-id="groundwater-withdrawals">Groundwater Withdrawals</h3>
-<p>To understand the relationship and timing of groundwater levels, Clark Fork streamflow, and Missoula City pumping rates, we normalize all monthly values to be between zero and one (<a href="#fig-norm-ts" class="quarto-xref">Figure&nbsp;8</a>). We average the normalized groundwater depths across all wells to get one groundwater signal to compare to river flows and pumping rates. The signals are remarkably aligned in their seasonality. Of course, groundwater is a dependent variable, but river flows and pumping rate are independent. Essentially, the City is increasing their pumping at the same time streamflow, and thus groundwater, are at their maximum. This is an opportunitistic situation and one that should be monitored closely if streamflow timing were to shift due to changes in snowpack runoff, as projected by climate change studies <span class="citation" data-cites="whitlock2017MontanaClimate2017">(<a href="#ref-whitlock2017MontanaClimate2017" role="doc-biblioref">Whitlock et al. 2017</a>)</span>. The main difference in these three signals is the lagged decrease in groundwater levels in comparison to the river and pumping rate. Groundwater tends to drop much slower than the two independent variables, suggesting there is some storage effect in the unconfined aquifer.</p>
+<p>To understand the relationship and timing of groundwater levels, Clark Fork streamflow, and Missoula City pumping rates, we normalize all monthly values to be between zero and one (<a href="#fig-norm-ts" class="quarto-xref">Figure&nbsp;10</a>). We average the normalized groundwater depths across all wells to get one groundwater signal to compare to river flows and pumping rates. The signals are remarkably aligned in their seasonality. Of course, groundwater is a dependent variable, but river flows and pumping rate are independent. Essentially, the City is increasing their pumping at the same time streamflow, and thus groundwater, are at their maximum. This is an opportunitistic situation and one that should be monitored closely if streamflow timing were to shift due to changes in snowpack runoff, as projected by climate change studies <span class="citation" data-cites="whitlock2017MontanaClimate2017">(<a href="#ref-whitlock2017MontanaClimate2017" role="doc-biblioref">Whitlock et al. 2017</a>)</span>. The main difference in these three signals is the lagged decrease in groundwater levels in comparison to the river and pumping rate. Groundwater tends to drop much slower than the two independent variables, suggesting there is some storage effect in the unconfined aquifer.</p>
 <div id="cell-fig-norm-ts" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display">
 <div id="fig-norm-ts" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -276,13 +353,13 @@ Figure&nbsp;7: Trends in lower (10th percentile) groundwater depths. The red mar
 <img src="report_files/figure-html/fig-norm-ts-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-norm-ts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Normalized timeseries values for average groundwater depth (blue), Clark Fork River streamflow (orange), and Missoula City pumping rates (green). All values are monthly averages.
+Figure&nbsp;10: Normalized timeseries values for average groundwater depth (blue), Clark Fork River streamflow (orange), and Missoula City pumping rates (green). All values are monthly averages.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Similar to the Clark Fork river flows and groundwater level, the City pumping rate also has an overall increasing trend and strong seasonality over the study time period (<a href="#fig-pumping-stl" class="quarto-xref">Figure&nbsp;9</a>). While the overall trend is increasing, there are three smaller trends that are distinct across the time period. From 2000 to 2007 the pumping rate increases, then from 2007 to 2015 the pumping rate decreases, followed by another strong increasing trend from 2015 to 2023.</p>
+<p>Similar to the Clark Fork river flows and groundwater level, the City pumping rate also has an overall increasing trend and strong seasonality over the study time period (<a href="#fig-pumping-stl" class="quarto-xref">Figure&nbsp;11</a>). While the overall trend is increasing, there are three smaller trends that are distinct across the time period. From 2000 to 2007 the pumping rate increases, then from 2007 to 2015 the pumping rate decreases, followed by another strong increasing trend from 2015 to 2023.</p>
 <div id="cell-fig-pumping-stl" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display">
 <div id="fig-pumping-stl" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -291,14 +368,14 @@ Figure&nbsp;8: Normalized timeseries values for average groundwater depth (blue)
 <img src="report_files/figure-html/fig-pumping-stl-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pumping-stl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: The seasonal decomposition using LOESS of the City of Missoula pumping rates. The top figure is the combined signal, the second to the top is the trend, the third from the top is the seasonality, and the bottom figure is the residual after trend and seasonality are removed.
+Figure&nbsp;11: The seasonal decomposition using LOESS of the City of Missoula pumping rates. The top figure is the combined signal, the second to the top is the trend, the third from the top is the seasonality, and the bottom figure is the residual after trend and seasonality are removed.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>The most recent 9 years provide an interesting case study. Over this time period, pumping rates have strongly increased and river flows have remained around the same (slight increase), yet the groundwater levels from the majority of the wells has either decreased or is no longer statistically significant (<a href="#fig-gw-recent" class="quarto-xref">Figure&nbsp;10</a>). This suggests that there are other factors influencing groundwater levels, most likely groundwater withdrawals.</p>
-<div id="cell-fig-gw-recent" class="cell" data-execution_count="27">
+<p>The most recent 10 water-years (2014-2023) provide an interesting case study. Over this time period, pumping rates have strongly increased and river flows have remained around the same (slight increase), yet the groundwater trends from the majority of the wells have either decreased or are no longer statistically significant (<a href="#fig-gw-recent" class="quarto-xref">Figure&nbsp;12</a>). This suggests that there are other factors influencing groundwater levels, most likely groundwater withdrawals.</p>
+<div id="cell-fig-gw-recent" class="cell" data-execution_count="30">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-recent" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -306,14 +383,14 @@ Figure&nbsp;9: The seasonal decomposition using LOESS of the City of Missoula pu
 <img src="report_files/figure-html/fig-gw-recent-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-recent-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: The most recent 9-years of groundwater level data with trends (significant and non-significant).
+Figure&nbsp;12: The most recent 10-years of groundwater level data with trends (significant and non-significant).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In order to understand how withdrawals may be impacting groundwater levels over the entire time period, we remove the normalized trend in river flow from the groundwater signal at all wells (<a href="#fig-gw-qremoved" class="quarto-xref">Figure&nbsp;11</a>). Once the river flow trend is removed, changes in groundwater depth are shifted from increasing to decreasing in 14 of the 16 wells. This suggests that if the river flows were not increasing over this time period, groundwater trends would likely be decreasing. Thus, the river is masking the decreasing trends in groundwater and given that there is no evidence for an increasing trend in river flow to continue into the future, it is important to consider what can be done now to minimize these underlying changes in groundwater level.</p>
-<div id="cell-fig-gw-qremoved" class="cell" data-execution_count="28">
+<p>In order to understand how withdrawals may be impacting groundwater levels over the entire time period, we remove the normalized trend in river flow from the groundwater signal at all wells (<a href="#fig-gw-qremoved" class="quarto-xref">Figure&nbsp;13</a>). Once the river flow trend is removed, changes in groundwater depth are shifted from increasing to decreasing in 14 of the 16 wells. This suggests that if the river flows were not increasing over this time period, groundwater trends would likely be decreasing. Thus, the river is masking the decreasing trends in groundwater and given that there is no evidence for an increasing trend in river flow to continue into the future, it is important to consider what can be done now to minimize these underlying changes in groundwater level.</p>
+<div id="cell-fig-gw-qremoved" class="cell" data-execution_count="31">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-qremoved" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -321,7 +398,7 @@ Figure&nbsp;10: The most recent 9-years of groundwater level data with trends (s
 <img src="report_files/figure-html/fig-gw-qremoved-output-1.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gw-qremoved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Trends in groundwater depth after the normalized Clark Fork River has been removed.
+Figure&nbsp;13: Trends in groundwater depth after the normalized Clark Fork River has been removed.
 </figcaption>
 </figure>
 </div>
@@ -331,415 +408,395 @@ Figure&nbsp;11: Trends in groundwater depth after the normalized Clark Fork Rive
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>All of the trends calculated in this analysis are summarized in <a href="#tbl-slopes" class="quarto-xref">Table&nbsp;1</a>. The original trends are all strongly increasing, trends in the lower percentile are mixed, trends in the 90th percentile are all increasing strongly, trends in the most recent 9 years are mostly decreasing, and trends when the Clark Fork River trend is removed are almost entirely decreasing.</p>
-<div class="cell" data-execution_count="29">
-<div id="tbl-slopes" class="cell quarto-float anchored" data-execution_count="29">
+<p>All of the trends calculated in this analysis are summarized in <a href="#tbl-slopes" class="quarto-xref">Table&nbsp;2</a>. The original trends are all strongly increasing, trends in the lower percentile are mixed, trends in the 90th percentile are all increasing strongly, trends in the most recent 10 years are mostly decreasing, and trends when the Clark Fork River trend is removed are almost entirely decreasing.</p>
+<div class="cell" data-execution_count="33">
+<div id="tbl-slopes" class="cell quarto-float anchored" data-execution_count="33">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-slopes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: All groundwater trends color mapped with cool colors representing increasing trends and warm colors representing decreasing trends. The rows are GWIC IDs and the columns are as follows: Trend (raw data), 10th % (Lower percentile), 90th % (upper percentile), Median (50th percentile), Recent (most recent 9 years), and Q removed (trend after the river flow trend was removed).
+Table&nbsp;2: All groundwater trends color mapped with cool colors representing increasing trends and warm colors representing decreasing trends. The rows are GWIC IDs and the columns are as follows: Trend (raw data), 10th % (Lower percentile), 90th % (upper percentile), Median (50th percentile), Recent (most recent 10 years), and Q removed (trend after the river flow trend was removed).
 </figcaption>
 <div aria-describedby="tbl-slopes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="33">
 <div>
 <style type="text/css">
-#T_b931a_row0_col0, #T_b931a_row0_col2, #T_b931a_row2_col0, #T_b931a_row2_col2, #T_b931a_row3_col0, #T_b931a_row3_col2, #T_b931a_row4_col0, #T_b931a_row4_col2, #T_b931a_row6_col0, #T_b931a_row7_col0, #T_b931a_row7_col2, #T_b931a_row8_col0, #T_b931a_row8_col2, #T_b931a_row9_col0, #T_b931a_row9_col2, #T_b931a_row10_col0, #T_b931a_row10_col2, #T_b931a_row11_col0, #T_b931a_row11_col2, #T_b931a_row13_col0, #T_b931a_row13_col2, #T_b931a_row14_col0, #T_b931a_row15_col0, #T_b931a_row15_col2 {
+#T_0f44b_row0_col0, #T_0f44b_row0_col2, #T_0f44b_row2_col0, #T_0f44b_row2_col2, #T_0f44b_row3_col0, #T_0f44b_row3_col2, #T_0f44b_row4_col0, #T_0f44b_row4_col2, #T_0f44b_row6_col0, #T_0f44b_row7_col0, #T_0f44b_row7_col2, #T_0f44b_row8_col0, #T_0f44b_row8_col2, #T_0f44b_row9_col0, #T_0f44b_row9_col2, #T_0f44b_row10_col0, #T_0f44b_row10_col2, #T_0f44b_row11_col0, #T_0f44b_row11_col2, #T_0f44b_row13_col0, #T_0f44b_row13_col2, #T_0f44b_row14_col0, #T_0f44b_row15_col0, #T_0f44b_row15_col2 {
   background-color: #3b4cc0;
   color: #f1f1f1;
 }
-#T_b931a_row0_col1, #T_b931a_row10_col1 {
+#T_0f44b_row0_col1, #T_0f44b_row10_col1 {
   background-color: #c4d5f3;
   color: #000000;
 }
-#T_b931a_row0_col3, #T_b931a_row6_col1, #T_b931a_row10_col3 {
+#T_0f44b_row0_col3, #T_0f44b_row6_col1, #T_0f44b_row10_col3 {
   background-color: #a5c3fe;
   color: #000000;
 }
-#T_b931a_row0_col4 {
-  background-color: #aec9fc;
+#T_0f44b_row0_col4 {
+  background-color: #b9d0f9;
   color: #000000;
 }
-#T_b931a_row0_col5 {
+#T_0f44b_row0_col5 {
   background-color: #e8d6cc;
   color: #000000;
 }
-#T_b931a_row1_col0 {
+#T_0f44b_row1_col0 {
   background-color: #7a9df8;
   color: #f1f1f1;
 }
-#T_b931a_row1_col1, #T_b931a_row14_col1 {
+#T_0f44b_row1_col1, #T_0f44b_row14_col1 {
   background-color: #dddcdc;
   color: #000000;
 }
-#T_b931a_row1_col2 {
+#T_0f44b_row1_col2 {
   background-color: #4f69d9;
   color: #f1f1f1;
 }
-#T_b931a_row1_col3, #T_b931a_row4_col3 {
+#T_0f44b_row1_col3, #T_0f44b_row4_col3 {
   background-color: #d7dce3;
   color: #000000;
 }
-#T_b931a_row1_col4 {
-  background-color: #f7a688;
+#T_0f44b_row1_col4 {
+  background-color: #f7b497;
   color: #000000;
 }
-#T_b931a_row1_col5 {
+#T_0f44b_row1_col5 {
   background-color: #f1cdba;
   color: #000000;
 }
-#T_b931a_row2_col1, #T_b931a_row6_col5 {
+#T_0f44b_row2_col1, #T_0f44b_row6_col5 {
   background-color: #c3d5f4;
   color: #000000;
 }
-#T_b931a_row2_col3, #T_b931a_row8_col3 {
+#T_0f44b_row2_col3, #T_0f44b_row8_col3 {
   background-color: #98b9ff;
   color: #000000;
 }
-#T_b931a_row2_col4 {
-  background-color: #b3cdfb;
-  color: #000000;
-}
-#T_b931a_row2_col5 {
-  background-color: #e1dad6;
-  color: #000000;
-}
-#T_b931a_row3_col1 {
-  background-color: #c7d7f0;
-  color: #000000;
-}
-#T_b931a_row3_col3 {
-  background-color: #c1d4f4;
-  color: #000000;
-}
-#T_b931a_row3_col4, #T_b931a_row8_col4 {
-  background-color: #cedaeb;
-  color: #000000;
-}
-#T_b931a_row3_col5 {
-  background-color: #e9d5cb;
-  color: #000000;
-}
-#T_b931a_row4_col1 {
-  background-color: #cfdaea;
-  color: #000000;
-}
-#T_b931a_row4_col4 {
-  background-color: #f2cab5;
-  color: #000000;
-}
-#T_b931a_row4_col5, #T_b931a_row11_col5 {
-  background-color: #ead5c9;
-  color: #000000;
-}
-#T_b931a_row5_col0 {
-  background-color: #7b9ff9;
-  color: #f1f1f1;
-}
-#T_b931a_row5_col1 {
-  background-color: #edd2c3;
-  color: #000000;
-}
-#T_b931a_row5_col2 {
-  background-color: #455cce;
-  color: #f1f1f1;
-}
-#T_b931a_row5_col3 {
-  background-color: #d4dbe6;
-  color: #000000;
-}
-#T_b931a_row5_col4 {
-  background-color: #f29274;
-  color: #f1f1f1;
-}
-#T_b931a_row5_col5 {
-  background-color: #f2c9b4;
-  color: #000000;
-}
-#T_b931a_row6_col2 {
-  background-color: #4a63d3;
-  color: #f1f1f1;
-}
-#T_b931a_row6_col3, #T_b931a_row10_col4 {
-  background-color: #a9c6fd;
-  color: #000000;
-}
-#T_b931a_row6_col4 {
-  background-color: #c0282f;
-  color: #f1f1f1;
-}
-#T_b931a_row7_col1 {
-  background-color: #6384eb;
-  color: #f1f1f1;
-}
-#T_b931a_row7_col3 {
-  background-color: #6c8ff1;
-  color: #f1f1f1;
-}
-#T_b931a_row7_col4 {
-  background-color: #e67259;
-  color: #f1f1f1;
-}
-#T_b931a_row7_col5 {
-  background-color: #9fbfff;
-  color: #000000;
-}
-#T_b931a_row8_col1 {
-  background-color: #b2ccfb;
-  color: #000000;
-}
-#T_b931a_row8_col5, #T_b931a_row10_col5 {
-  background-color: #e7d7ce;
-  color: #000000;
-}
-#T_b931a_row9_col1 {
-  background-color: #bfd3f6;
-  color: #000000;
-}
-#T_b931a_row9_col3, #T_b931a_row11_col1 {
-  background-color: #b6cefa;
-  color: #000000;
-}
-#T_b931a_row9_col4 {
-  background-color: #d6dce4;
-  color: #000000;
-}
-#T_b931a_row9_col5 {
-  background-color: #e6d7cf;
-  color: #000000;
-}
-#T_b931a_row11_col3 {
-  background-color: #afcafc;
-  color: #000000;
-}
-#T_b931a_row11_col4 {
-  background-color: #d8dce2;
-  color: #000000;
-}
-#T_b931a_row12_col0 {
-  background-color: #6f92f3;
-  color: #f1f1f1;
-}
-#T_b931a_row12_col1, #T_b931a_row15_col1 {
-  background-color: #dfdbd9;
-  color: #000000;
-}
-#T_b931a_row12_col2 {
-  background-color: #7ea1fa;
-  color: #f1f1f1;
-}
-#T_b931a_row12_col3 {
-  background-color: #d3dbe7;
-  color: #000000;
-}
-#T_b931a_row12_col4 {
-  background-color: #f39778;
-  color: #000000;
-}
-#T_b931a_row12_col5 {
-  background-color: #eed0c0;
-  color: #000000;
-}
-#T_b931a_row13_col1 {
+#T_0f44b_row2_col4, #T_0f44b_row13_col1 {
   background-color: #bcd2f7;
   color: #000000;
 }
-#T_b931a_row13_col3 {
+#T_0f44b_row2_col5 {
+  background-color: #e1dad6;
+  color: #000000;
+}
+#T_0f44b_row3_col1 {
+  background-color: #c7d7f0;
+  color: #000000;
+}
+#T_0f44b_row3_col3 {
+  background-color: #c1d4f4;
+  color: #000000;
+}
+#T_0f44b_row3_col4, #T_0f44b_row4_col1, #T_0f44b_row8_col4 {
+  background-color: #cfdaea;
+  color: #000000;
+}
+#T_0f44b_row3_col5 {
+  background-color: #e9d5cb;
+  color: #000000;
+}
+#T_0f44b_row4_col4, #T_0f44b_row15_col5 {
+  background-color: #efcfbf;
+  color: #000000;
+}
+#T_0f44b_row4_col5, #T_0f44b_row11_col5 {
+  background-color: #ead5c9;
+  color: #000000;
+}
+#T_0f44b_row5_col0 {
+  background-color: #7b9ff9;
+  color: #f1f1f1;
+}
+#T_0f44b_row5_col1 {
+  background-color: #edd2c3;
+  color: #000000;
+}
+#T_0f44b_row5_col2 {
+  background-color: #455cce;
+  color: #f1f1f1;
+}
+#T_0f44b_row5_col3 {
+  background-color: #d4dbe6;
+  color: #000000;
+}
+#T_0f44b_row5_col4, #T_0f44b_row15_col4 {
+  background-color: #f5a081;
+  color: #000000;
+}
+#T_0f44b_row5_col5 {
+  background-color: #f2c9b4;
+  color: #000000;
+}
+#T_0f44b_row6_col2 {
+  background-color: #4a63d3;
+  color: #f1f1f1;
+}
+#T_0f44b_row6_col3 {
+  background-color: #a9c6fd;
+  color: #000000;
+}
+#T_0f44b_row6_col4 {
+  background-color: #d65244;
+  color: #f1f1f1;
+}
+#T_0f44b_row7_col1 {
+  background-color: #6384eb;
+  color: #f1f1f1;
+}
+#T_0f44b_row7_col3 {
+  background-color: #6c8ff1;
+  color: #f1f1f1;
+}
+#T_0f44b_row7_col4 {
+  background-color: #f49a7b;
+  color: #000000;
+}
+#T_0f44b_row7_col5 {
+  background-color: #9fbfff;
+  color: #000000;
+}
+#T_0f44b_row8_col1 {
+  background-color: #b2ccfb;
+  color: #000000;
+}
+#T_0f44b_row8_col5, #T_0f44b_row10_col5 {
+  background-color: #e7d7ce;
+  color: #000000;
+}
+#T_0f44b_row9_col1 {
+  background-color: #bfd3f6;
+  color: #000000;
+}
+#T_0f44b_row9_col3, #T_0f44b_row11_col1 {
+  background-color: #b6cefa;
+  color: #000000;
+}
+#T_0f44b_row9_col4, #T_0f44b_row11_col4 {
+  background-color: #d5dbe5;
+  color: #000000;
+}
+#T_0f44b_row9_col5 {
+  background-color: #e6d7cf;
+  color: #000000;
+}
+#T_0f44b_row10_col4 {
+  background-color: #bbd1f8;
+  color: #000000;
+}
+#T_0f44b_row11_col3 {
+  background-color: #afcafc;
+  color: #000000;
+}
+#T_0f44b_row12_col0 {
+  background-color: #6f92f3;
+  color: #f1f1f1;
+}
+#T_0f44b_row12_col1, #T_0f44b_row15_col1 {
+  background-color: #dfdbd9;
+  color: #000000;
+}
+#T_0f44b_row12_col2 {
+  background-color: #7ea1fa;
+  color: #f1f1f1;
+}
+#T_0f44b_row12_col3 {
+  background-color: #d3dbe7;
+  color: #000000;
+}
+#T_0f44b_row12_col4 {
+  background-color: #f6a385;
+  color: #000000;
+}
+#T_0f44b_row12_col5 {
+  background-color: #eed0c0;
+  color: #000000;
+}
+#T_0f44b_row13_col3 {
   background-color: #8caffe;
   color: #000000;
 }
-#T_b931a_row13_col4 {
-  background-color: #cbd8ee;
+#T_0f44b_row13_col4 {
+  background-color: #ccd9ed;
   color: #000000;
 }
-#T_b931a_row13_col5 {
+#T_0f44b_row13_col5, #T_0f44b_row14_col4 {
   background-color: #e3d9d3;
   color: #000000;
 }
-#T_b931a_row14_col2 {
+#T_0f44b_row14_col2 {
   background-color: #465ecf;
   color: #f1f1f1;
 }
-#T_b931a_row14_col3 {
+#T_0f44b_row14_col3 {
   background-color: #d1dae9;
   color: #000000;
 }
-#T_b931a_row14_col4 {
-  background-color: #efcebd;
-  color: #000000;
-}
-#T_b931a_row14_col5 {
+#T_0f44b_row14_col5 {
   background-color: #ebd3c6;
   color: #000000;
 }
-#T_b931a_row15_col3 {
+#T_0f44b_row15_col3 {
   background-color: #cdd9ec;
-  color: #000000;
-}
-#T_b931a_row15_col4 {
-  background-color: #ed8366;
-  color: #f1f1f1;
-}
-#T_b931a_row15_col5 {
-  background-color: #efcfbf;
   color: #000000;
 }
 </style>
 
-<table id="T_b931a" class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_0f44b" class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_b931a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Trend</th>
-<th id="T_b931a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">10th %</th>
-<th id="T_b931a_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">90th %</th>
-<th id="T_b931a_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Median</th>
-<th id="T_b931a_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Recent</th>
-<th id="T_b931a_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">Q removed</th>
+<th id="T_0f44b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Trend</th>
+<th id="T_0f44b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">10th %</th>
+<th id="T_0f44b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">90th %</th>
+<th id="T_0f44b_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Median</th>
+<th id="T_0f44b_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Recent</th>
+<th id="T_0f44b_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">Q removed</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_b931a_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">151061</td>
-<td id="T_b931a_row0_col0" class="data row0 col0">0.032163</td>
-<td id="T_b931a_row0_col1" class="data row0 col1">0.001779</td>
-<td id="T_b931a_row0_col2" class="data row0 col2">0.018536</td>
-<td id="T_b931a_row0_col3" class="data row0 col3">0.003612</td>
-<td id="T_b931a_row0_col4" class="data row0 col4">0.003062</td>
-<td id="T_b931a_row0_col5" class="data row0 col5">-0.000914</td>
+<td id="T_0f44b_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">151061</td>
+<td id="T_0f44b_row0_col0" class="data row0 col0">0.032163</td>
+<td id="T_0f44b_row0_col1" class="data row0 col1">0.001779</td>
+<td id="T_0f44b_row0_col2" class="data row0 col2">0.018536</td>
+<td id="T_0f44b_row0_col3" class="data row0 col3">0.003612</td>
+<td id="T_0f44b_row0_col4" class="data row0 col4">0.002448</td>
+<td id="T_0f44b_row0_col5" class="data row0 col5">-0.000914</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">151101</td>
-<td id="T_b931a_row1_col0" class="data row1 col0">0.006044</td>
-<td id="T_b931a_row1_col1" class="data row1 col1">-0.000054</td>
-<td id="T_b931a_row1_col2" class="data row1 col2">0.008658</td>
-<td id="T_b931a_row1_col3" class="data row1 col3">0.000451</td>
-<td id="T_b931a_row1_col4" class="data row1 col4">-0.004351</td>
-<td id="T_b931a_row1_col5" class="data row1 col5">-0.001840</td>
+<td id="T_0f44b_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">151101</td>
+<td id="T_0f44b_row1_col0" class="data row1 col0">0.006044</td>
+<td id="T_0f44b_row1_col1" class="data row1 col1">-0.000054</td>
+<td id="T_0f44b_row1_col2" class="data row1 col2">0.008658</td>
+<td id="T_0f44b_row1_col3" class="data row1 col3">0.000451</td>
+<td id="T_0f44b_row1_col4" class="data row1 col4">-0.003573</td>
+<td id="T_0f44b_row1_col5" class="data row1 col5">-0.001840</td>
 </tr>
 <tr class="odd">
-<td id="T_b931a_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">151143</td>
-<td id="T_b931a_row2_col0" class="data row2 col0">0.036425</td>
-<td id="T_b931a_row2_col1" class="data row2 col1">0.001829</td>
-<td id="T_b931a_row2_col2" class="data row2 col2">0.018914</td>
-<td id="T_b931a_row2_col3" class="data row2 col3">0.004328</td>
-<td id="T_b931a_row2_col4" class="data row2 col4">0.002753</td>
-<td id="T_b931a_row2_col5" class="data row2 col5">-0.000388</td>
+<td id="T_0f44b_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">151143</td>
+<td id="T_0f44b_row2_col0" class="data row2 col0">0.036425</td>
+<td id="T_0f44b_row2_col1" class="data row2 col1">0.001829</td>
+<td id="T_0f44b_row2_col2" class="data row2 col2">0.018914</td>
+<td id="T_0f44b_row2_col3" class="data row2 col3">0.004328</td>
+<td id="T_0f44b_row2_col4" class="data row2 col4">0.002246</td>
+<td id="T_0f44b_row2_col5" class="data row2 col5">-0.000388</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">151161</td>
-<td id="T_b931a_row3_col0" class="data row3 col0">0.020813</td>
-<td id="T_b931a_row3_col1" class="data row3 col1">0.001529</td>
-<td id="T_b931a_row3_col2" class="data row3 col2">0.013252</td>
-<td id="T_b931a_row3_col3" class="data row3 col3">0.001901</td>
-<td id="T_b931a_row3_col4" class="data row3 col4">0.001025</td>
-<td id="T_b931a_row3_col5" class="data row3 col5">-0.000955</td>
+<td id="T_0f44b_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">151161</td>
+<td id="T_0f44b_row3_col0" class="data row3 col0">0.020813</td>
+<td id="T_0f44b_row3_col1" class="data row3 col1">0.001529</td>
+<td id="T_0f44b_row3_col2" class="data row3 col2">0.013252</td>
+<td id="T_0f44b_row3_col3" class="data row3 col3">0.001901</td>
+<td id="T_0f44b_row3_col4" class="data row3 col4">0.000978</td>
+<td id="T_0f44b_row3_col5" class="data row3 col5">-0.000955</td>
 </tr>
 <tr class="odd">
-<td id="T_b931a_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">151179</td>
-<td id="T_b931a_row4_col0" class="data row4 col0">0.013695</td>
-<td id="T_b931a_row4_col1" class="data row4 col1">0.000977</td>
-<td id="T_b931a_row4_col2" class="data row4 col2">0.010625</td>
-<td id="T_b931a_row4_col3" class="data row4 col3">0.000415</td>
-<td id="T_b931a_row4_col4" class="data row4 col4">-0.002106</td>
-<td id="T_b931a_row4_col5" class="data row4 col5">-0.001035</td>
+<td id="T_0f44b_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">151179</td>
+<td id="T_0f44b_row4_col0" class="data row4 col0">0.013695</td>
+<td id="T_0f44b_row4_col1" class="data row4 col1">0.000977</td>
+<td id="T_0f44b_row4_col2" class="data row4 col2">0.010625</td>
+<td id="T_0f44b_row4_col3" class="data row4 col3">0.000415</td>
+<td id="T_0f44b_row4_col4" class="data row4 col4">-0.001614</td>
+<td id="T_0f44b_row4_col5" class="data row4 col5">-0.001035</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">151188</td>
-<td id="T_b931a_row5_col0" class="data row5 col0">0.006000</td>
-<td id="T_b931a_row5_col1" class="data row5 col1">-0.001371</td>
-<td id="T_b931a_row5_col2" class="data row5 col2">0.009278</td>
-<td id="T_b931a_row5_col3" class="data row5 col3">0.000702</td>
-<td id="T_b931a_row5_col4" class="data row5 col4">-0.005372</td>
-<td id="T_b931a_row5_col5" class="data row5 col5">-0.002174</td>
+<td id="T_0f44b_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">151188</td>
+<td id="T_0f44b_row5_col0" class="data row5 col0">0.006000</td>
+<td id="T_0f44b_row5_col1" class="data row5 col1">-0.001371</td>
+<td id="T_0f44b_row5_col2" class="data row5 col2">0.009278</td>
+<td id="T_0f44b_row5_col3" class="data row5 col3">0.000702</td>
+<td id="T_0f44b_row5_col4" class="data row5 col4">-0.004630</td>
+<td id="T_0f44b_row5_col5" class="data row5 col5">-0.002174</td>
 </tr>
 <tr class="odd">
-<td id="T_b931a_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">151189</td>
-<td id="T_b931a_row6_col0" class="data row6 col0">0.042835</td>
-<td id="T_b931a_row6_col1" class="data row6 col1">0.003613</td>
-<td id="T_b931a_row6_col2" class="data row6 col2">0.008919</td>
-<td id="T_b931a_row6_col3" class="data row6 col3">0.003431</td>
-<td id="T_b931a_row6_col4" class="data row6 col4">-0.009310</td>
-<td id="T_b931a_row6_col5" class="data row6 col5">0.001848</td>
+<td id="T_0f44b_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">151189</td>
+<td id="T_0f44b_row6_col0" class="data row6 col0">0.042835</td>
+<td id="T_0f44b_row6_col1" class="data row6 col1">0.003613</td>
+<td id="T_0f44b_row6_col2" class="data row6 col2">0.008919</td>
+<td id="T_0f44b_row6_col3" class="data row6 col3">0.003431</td>
+<td id="T_0f44b_row6_col4" class="data row6 col4">-0.008008</td>
+<td id="T_0f44b_row6_col5" class="data row6 col5">0.001848</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">151190</td>
-<td id="T_b931a_row7_col0" class="data row7 col0">0.103543</td>
-<td id="T_b931a_row7_col1" class="data row7 col1">0.007349</td>
-<td id="T_b931a_row7_col2" class="data row7 col2">0.021091</td>
-<td id="T_b931a_row7_col3" class="data row7 col3">0.006837</td>
-<td id="T_b931a_row7_col4" class="data row7 col4">-0.006752</td>
-<td id="T_b931a_row7_col5" class="data row7 col5">0.003941</td>
+<td id="T_0f44b_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">151190</td>
+<td id="T_0f44b_row7_col0" class="data row7 col0">0.103543</td>
+<td id="T_0f44b_row7_col1" class="data row7 col1">0.007349</td>
+<td id="T_0f44b_row7_col2" class="data row7 col2">0.021091</td>
+<td id="T_0f44b_row7_col3" class="data row7 col3">0.006837</td>
+<td id="T_0f44b_row7_col4" class="data row7 col4">-0.004975</td>
+<td id="T_0f44b_row7_col5" class="data row7 col5">0.003941</td>
 </tr>
 <tr class="odd">
-<td id="T_b931a_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">151191</td>
-<td id="T_b931a_row8_col0" class="data row8 col0">0.037104</td>
-<td id="T_b931a_row8_col1" class="data row8 col1">0.002852</td>
-<td id="T_b931a_row8_col2" class="data row8 col2">0.021894</td>
-<td id="T_b931a_row8_col3" class="data row8 col3">0.004329</td>
-<td id="T_b931a_row8_col4" class="data row8 col4">0.001090</td>
-<td id="T_b931a_row8_col5" class="data row8 col5">-0.000853</td>
+<td id="T_0f44b_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">151191</td>
+<td id="T_0f44b_row8_col0" class="data row8 col0">0.037104</td>
+<td id="T_0f44b_row8_col1" class="data row8 col1">0.002852</td>
+<td id="T_0f44b_row8_col2" class="data row8 col2">0.021894</td>
+<td id="T_0f44b_row8_col3" class="data row8 col3">0.004329</td>
+<td id="T_0f44b_row8_col4" class="data row8 col4">0.000939</td>
+<td id="T_0f44b_row8_col5" class="data row8 col5">-0.000853</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">157208</td>
-<td id="T_b931a_row9_col0" class="data row9 col0">0.034414</td>
-<td id="T_b931a_row9_col1" class="data row9 col1">0.002080</td>
-<td id="T_b931a_row9_col2" class="data row9 col2">0.017454</td>
-<td id="T_b931a_row9_col3" class="data row9 col3">0.002634</td>
-<td id="T_b931a_row9_col4" class="data row9 col4">0.000471</td>
-<td id="T_b931a_row9_col5" class="data row9 col5">-0.000707</td>
+<td id="T_0f44b_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">157208</td>
+<td id="T_0f44b_row9_col0" class="data row9 col0">0.034414</td>
+<td id="T_0f44b_row9_col1" class="data row9 col1">0.002080</td>
+<td id="T_0f44b_row9_col2" class="data row9 col2">0.017454</td>
+<td id="T_0f44b_row9_col3" class="data row9 col3">0.002634</td>
+<td id="T_0f44b_row9_col4" class="data row9 col4">0.000621</td>
+<td id="T_0f44b_row9_col5" class="data row9 col5">-0.000707</td>
 </tr>
 <tr class="odd">
-<td id="T_b931a_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">157211</td>
-<td id="T_b931a_row10_col0" class="data row10 col0">0.032672</td>
-<td id="T_b931a_row10_col1" class="data row10 col1">0.001784</td>
-<td id="T_b931a_row10_col2" class="data row10 col2">0.018621</td>
-<td id="T_b931a_row10_col3" class="data row10 col3">0.003622</td>
-<td id="T_b931a_row10_col4" class="data row10 col4">0.003404</td>
-<td id="T_b931a_row10_col5" class="data row10 col5">-0.000828</td>
+<td id="T_0f44b_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">157211</td>
+<td id="T_0f44b_row10_col0" class="data row10 col0">0.032672</td>
+<td id="T_0f44b_row10_col1" class="data row10 col1">0.001784</td>
+<td id="T_0f44b_row10_col2" class="data row10 col2">0.018621</td>
+<td id="T_0f44b_row10_col3" class="data row10 col3">0.003622</td>
+<td id="T_0f44b_row10_col4" class="data row10 col4">0.002267</td>
+<td id="T_0f44b_row10_col5" class="data row10 col5">-0.000828</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">209148</td>
-<td id="T_b931a_row11_col0" class="data row11 col0">0.035646</td>
-<td id="T_b931a_row11_col1" class="data row11 col1">0.002631</td>
-<td id="T_b931a_row11_col2" class="data row11 col2">0.021303</td>
-<td id="T_b931a_row11_col3" class="data row11 col3">0.003047</td>
-<td id="T_b931a_row11_col4" class="data row11 col4">0.000354</td>
-<td id="T_b931a_row11_col5" class="data row11 col5">-0.001036</td>
+<td id="T_0f44b_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">209148</td>
+<td id="T_0f44b_row11_col0" class="data row11 col0">0.035646</td>
+<td id="T_0f44b_row11_col1" class="data row11 col1">0.002631</td>
+<td id="T_0f44b_row11_col2" class="data row11 col2">0.021303</td>
+<td id="T_0f44b_row11_col3" class="data row11 col3">0.003047</td>
+<td id="T_0f44b_row11_col4" class="data row11 col4">0.000569</td>
+<td id="T_0f44b_row11_col5" class="data row11 col5">-0.001036</td>
 </tr>
 <tr class="odd">
-<td id="T_b931a_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">209254</td>
-<td id="T_b931a_row12_col0" class="data row12 col0">0.006685</td>
-<td id="T_b931a_row12_col1" class="data row12 col1">-0.000225</td>
-<td id="T_b931a_row12_col2" class="data row12 col2">0.005818</td>
-<td id="T_b931a_row12_col3" class="data row12 col3">0.000763</td>
-<td id="T_b931a_row12_col4" class="data row12 col4">-0.005130</td>
-<td id="T_b931a_row12_col5" class="data row12 col5">-0.001534</td>
+<td id="T_0f44b_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">209254</td>
+<td id="T_0f44b_row12_col0" class="data row12 col0">0.006685</td>
+<td id="T_0f44b_row12_col1" class="data row12 col1">-0.000225</td>
+<td id="T_0f44b_row12_col2" class="data row12 col2">0.005818</td>
+<td id="T_0f44b_row12_col3" class="data row12 col3">0.000763</td>
+<td id="T_0f44b_row12_col4" class="data row12 col4">-0.004506</td>
+<td id="T_0f44b_row12_col5" class="data row12 col5">-0.001534</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row13" class="row_heading level0 row13" data-quarto-table-cell-role="th">209255</td>
-<td id="T_b931a_row13_col0" class="data row13 col0">0.039046</td>
-<td id="T_b931a_row13_col1" class="data row13 col1">0.002236</td>
-<td id="T_b931a_row13_col2" class="data row13 col2">0.021174</td>
-<td id="T_b931a_row13_col3" class="data row13 col3">0.005019</td>
-<td id="T_b931a_row13_col4" class="data row13 col4">0.001301</td>
-<td id="T_b931a_row13_col5" class="data row13 col5">-0.000500</td>
+<td id="T_0f44b_level0_row13" class="row_heading level0 row13" data-quarto-table-cell-role="th">209255</td>
+<td id="T_0f44b_row13_col0" class="data row13 col0">0.039046</td>
+<td id="T_0f44b_row13_col1" class="data row13 col1">0.002236</td>
+<td id="T_0f44b_row13_col2" class="data row13 col2">0.021174</td>
+<td id="T_0f44b_row13_col3" class="data row13 col3">0.005019</td>
+<td id="T_0f44b_row13_col4" class="data row13 col4">0.001250</td>
+<td id="T_0f44b_row13_col5" class="data row13 col5">-0.000500</td>
 </tr>
 <tr class="odd">
-<td id="T_b931a_level0_row14" class="row_heading level0 row14" data-quarto-table-cell-role="th">67037</td>
-<td id="T_b931a_row14_col0" class="data row14 col0">0.011960</td>
-<td id="T_b931a_row14_col1" class="data row14 col1">-0.000025</td>
-<td id="T_b931a_row14_col2" class="data row14 col2">0.009175</td>
-<td id="T_b931a_row14_col3" class="data row14 col3">0.000911</td>
-<td id="T_b931a_row14_col4" class="data row14 col4">-0.001663</td>
-<td id="T_b931a_row14_col5" class="data row14 col5">-0.001172</td>
+<td id="T_0f44b_level0_row14" class="row_heading level0 row14" data-quarto-table-cell-role="th">67037</td>
+<td id="T_0f44b_row14_col0" class="data row14 col0">0.011960</td>
+<td id="T_0f44b_row14_col1" class="data row14 col1">-0.000025</td>
+<td id="T_0f44b_row14_col2" class="data row14 col2">0.009175</td>
+<td id="T_0f44b_row14_col3" class="data row14 col3">0.000911</td>
+<td id="T_0f44b_row14_col4" class="data row14 col4">-0.000505</td>
+<td id="T_0f44b_row14_col5" class="data row14 col5">-0.001172</td>
 </tr>
 <tr class="even">
-<td id="T_b931a_level0_row15" class="row_heading level0 row15" data-quarto-table-cell-role="th">69402</td>
-<td id="T_b931a_row15_col0" class="data row15 col0">0.017000</td>
-<td id="T_b931a_row15_col1" class="data row15 col1">-0.000193</td>
-<td id="T_b931a_row15_col2" class="data row15 col2">0.012551</td>
-<td id="T_b931a_row15_col3" class="data row15 col3">0.001157</td>
-<td id="T_b931a_row15_col4" class="data row15 col4">-0.006026</td>
-<td id="T_b931a_row15_col5" class="data row15 col5">-0.001585</td>
+<td id="T_0f44b_level0_row15" class="row_heading level0 row15" data-quarto-table-cell-role="th">69402</td>
+<td id="T_0f44b_row15_col0" class="data row15 col0">0.017000</td>
+<td id="T_0f44b_row15_col1" class="data row15 col1">-0.000193</td>
+<td id="T_0f44b_row15_col2" class="data row15 col2">0.012551</td>
+<td id="T_0f44b_row15_col3" class="data row15 col3">0.001157</td>
+<td id="T_0f44b_row15_col4" class="data row15 col4">-0.004630</td>
+<td id="T_0f44b_row15_col5" class="data row15 col5">-0.001585</td>
 </tr>
 </tbody>
 </table>
@@ -759,6 +816,12 @@ Kendall, Maurice George. 1975. <span>“Rank Correlation Methods.”</span>
 <div id="ref-mannNonparametricTestsTrend1945" class="csl-entry" role="listitem">
 Mann, Henry B. 1945. <span>“Nonparametric Tests Against Trend.”</span> <em>Econometrica: Journal of the Econometric Society</em>, 245–59. <a href="https://www.jstor.org/stable/1907187">https://www.jstor.org/stable/1907187</a>.
 </div>
+<div id="ref-millerNumericalFlowModel1991" class="csl-entry" role="listitem">
+Miller, Ross. 1991. <span>“Numerical Flow Model of the <span>Missoula Aquifer</span> : Interpretation of Aquifer Properties and River Interaction.”</span> <em>Graduate Student Theses, Dissertations, &amp; Professional Papers</em>, January.
+</div>
+<div id="ref-montanadnrcMontanaDroughtManagement2023" class="csl-entry" role="listitem">
+Montana DNRC. 2023. <span>“Montana <span>Drought Management Plan</span>.”</span> Helena, MT.
+</div>
 <div id="ref-tallmanSourcesWaterCaptured2005" class="csl-entry" role="listitem">
 Tallman, Amelia. 2005. <span>“Sources of Water Captured by Municipal Supply Wells in a Highly Conductive Aquifer Western <span>Montana</span>.”</span> <em>Graduate Student Theses, Dissertations, &amp; Professional Papers</em>, January.
 </div>
@@ -768,7 +831,16 @@ Whitlock, Cathy, Wyatt F Cross, Bruce D Maxwell, Nick Silverman, and Alisa A Wad
 </div>
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>https://www.epa.gov/dwssa<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://www.census.gov/programs-surveys/popest.html<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://mbmggwic.mtech.edu<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Correspondence with Marc Hendrickson on 2/13/2024<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
