@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Adaptive Hydrology">
-<meta name="dcterms.date" content="2024-06-18">
+<meta name="dcterms.date" content="2024-06-19">
 
 <title>Missoula Aquifer Sustainability Study</title>
 <style>
@@ -137,7 +137,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 18, 2024</p>
+      <p class="date">June 19, 2024</p>
     </div>
   </div>
   
@@ -151,43 +151,48 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The Missoula Aquifer is one of only 64 designated sole source aquifers in the United States.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> As such, it supplies over 75,000 residents, plus businesses, with potable groundwater. Historically, the aquifer has shown incredible resilience to drought and increases in population within the Missoula valley area. There have been no long-term signs of depletion in any of the 27 monitoring wells within the aquifer. This is likely due to the very high transmissivity rates, location within the Clark Fork and Bitterroot watersheds, reasonable historical growth rates of the surrounding population, and only mild changes in historical climate.</p>
-<p>Due to the unconfined nature of the aquifer and the high transmissivity rates of the substrate, the upstream inflows, and downstream outflows, of the aquifer are largely driven by the Clark Fork River<span class="citation" data-cites="tallmanSourcesWaterCaptured2005 millerNumericalFlowModel1991">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>; <a href="#ref-millerNumericalFlowModel1991" role="doc-biblioref">Miller 1991</a>)</span>. In fact, according to previous studies, the Clark Fork River provides over 80% of the annual aquifer recharge (<a href="#tbl-miller" class="quarto-xref">Table&nbsp;1</a>). Thus, it is fair to say that any long-term changes in streamflow will likely have far reaching impacts to the recharge and overall sustainability of the aquifer.</p>
-<div class="cell" data-execution_count="30">
-<div id="tbl-miller" class="cell quarto-float anchored" data-execution_count="30">
+<p>The Missoula Aquifer is one of only 64 designated sole source aquifers in the United States.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> As such, it supplies over 75,000 residents, plus businesses, with potable groundwater. Historically, the aquifer has shown incredible resilience to drought and increases in population within the Missoula valley area. There have been no long-term signs of depletion in any of the 27 monitoring wells within the aquifer. This is likely due to the very high transmissivity rates, location within the Clark Fork and Bitterroot watersheds, reasonable historical growth rates of the surrounding population, and only mild changes in historical climate <span class="citation" data-cites="whitlock2017MontanaClimate2017">(<a href="#ref-whitlock2017MontanaClimate2017" role="doc-biblioref">Whitlock et al. 2017</a>)</span>.</p>
+<p>Due to the unconfined nature of the aquifer and the high transmissivity rates of the substrate, the upstream inflows, and downstream outflows, of the aquifer are largely driven by the Clark Fork River <span class="citation" data-cites="tallmanSourcesWaterCaptured2005 millerNumericalFlowModel1991">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>; <a href="#ref-millerNumericalFlowModel1991" role="doc-biblioref">Miller 1991</a>)</span>. In fact, according to previous studies, the Clark Fork River provides over 80% of the annual aquifer recharge (<a href="#tbl-miller" class="quarto-xref">Table&nbsp;1</a>). Thus, it is fair to say that any long-term changes in streamflow will likely have far reaching impacts to the recharge and overall sustainability of the aquifer.</p>
+<div class="cell" data-execution_count="14">
+<div id="tbl-miller" class="cell quarto-float anchored" data-execution_count="14">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-miller-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Missoula aquifer source of average annual inflow according to <span class="citation" data-cites="millerNumericalFlowModel1991">Miller (<a href="#ref-millerNumericalFlowModel1991" role="doc-biblioref">1991</a>)</span>.
 </figcaption>
 <div aria-describedby="tbl-miller-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 <style type="text/css">
 </style>
 
-<table id="T_1db8a" class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_719d8" class="do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th id="T_1db8a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Source</th>
-<th id="T_1db8a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Inflow (acre-ft)</th>
+<th id="T_719d8_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Source</th>
+<th id="T_719d8_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Inflow (af/yr)</th>
+<th id="T_719d8_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Percent of Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_1db8a_row0_col0" class="data row0 col0">Clark Fork River</td>
-<td id="T_1db8a_row0_col1" class="data row0 col1">192000</td>
+<td id="T_719d8_row0_col0" class="data row0 col0">Clark Fork River</td>
+<td id="T_719d8_row0_col1" class="data row0 col1">192000</td>
+<td id="T_719d8_row0_col2" class="data row0 col2">0.827586</td>
 </tr>
 <tr class="even">
-<td id="T_1db8a_row1_col0" class="data row1 col0">Creek Drainages and Tertiary Hillsides</td>
-<td id="T_1db8a_row1_col1" class="data row1 col1">19000</td>
+<td id="T_719d8_row1_col0" class="data row1 col0">Creek Drainages and Tertiary Hillsides</td>
+<td id="T_719d8_row1_col1" class="data row1 col1">19000</td>
+<td id="T_719d8_row1_col2" class="data row1 col2">0.081897</td>
 </tr>
 <tr class="odd">
-<td id="T_1db8a_row2_col0" class="data row2 col0">Lateral Underflow (Bitterroot and Hellgate)</td>
-<td id="T_1db8a_row2_col1" class="data row2 col1">21000</td>
+<td id="T_719d8_row2_col0" class="data row2 col0">Lateral Underflow (Bitterroot and Hellgate)</td>
+<td id="T_719d8_row2_col1" class="data row2 col1">21000</td>
+<td id="T_719d8_row2_col2" class="data row2 col2">0.090517</td>
 </tr>
 <tr class="even">
-<td id="T_1db8a_row3_col0" class="data row3 col0">Total</td>
-<td id="T_1db8a_row3_col1" class="data row3 col1">232000</td>
+<td id="T_719d8_row3_col0" class="data row3 col0">Total</td>
+<td id="T_719d8_row3_col1" class="data row3 col1">232000</td>
+<td id="T_719d8_row3_col2" class="data row3 col2">nan</td>
 </tr>
 </tbody>
 </table>
@@ -243,7 +248,7 @@ Figure&nbsp;3: The study site including the 16 monitoring wells used in the anal
 </section>
 <section id="data-imputation" class="level3">
 <h3 class="anchored" data-anchor-id="data-imputation">Data Imputation</h3>
-<p>Historical groundwater measurements from the 16 sites were taken sporadically and inconsistently (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;4</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We gap-filled the data using a mulitple linear regression imputation method based on the Clark Fork River monthly average flow and the day of the year (i.e.&nbsp;last day of the month) to create consistent monthly data across all water years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, and seasonal trend decomposition using LOESS (STL) by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression data imputation method proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared).</p>
+<p>Historical groundwater measurements from the 16 sites were taken sporadically and inconsistently (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;4</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We gap-filled the data using a multiple linear regression imputation method based on the Clark Fork River monthly average flow and the day of the year (i.e.&nbsp;last day of the month) to create consistent monthly data across all water years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, and seasonal trend decomposition using LOESS (STL) by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression data imputation method proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared).</p>
 <div id="cell-fig-gw-imputation" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-imputation" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -264,8 +269,8 @@ Figure&nbsp;4: The groundwater data points for each well before imputation. Colo
 <h2 class="anchored" data-anchor-id="historical-analysis">Historical Analysis</h2>
 <section id="clark-fork-river" class="level3">
 <h3 class="anchored" data-anchor-id="clark-fork-river">Clark Fork River</h3>
-<p>The Clark Fork River serves as the main source for aquifer recharge in the Missoula Valley <span class="citation" data-cites="tallmanSourcesWaterCaptured2005">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>)</span>. While other inputs exist, we focus almost exclusively on the Clark Fork due to the overall magnitude relative to other inputs, and the high temporal correlation with one another that all the inputs exhibit [CITE Johnnie analysis]. A seasonal decomposition using LOESS (<a href="#fig-cfr-stl" class="quarto-xref">Figure&nbsp;5</a>) shows that there has been a consistent increasing trend in monthly average flows over the study period (2000-2023). In addition, as expected, there is a strong seasonality component with peak flows coming in late spring and baseflows in late summer and early fall.</p>
-<div id="cell-fig-cfr-stl" class="cell" data-execution_count="20">
+<p>The Clark Fork River serves as the main source for aquifer recharge in the Missoula Valley <span class="citation" data-cites="tallmanSourcesWaterCaptured2005">(<a href="#ref-tallmanSourcesWaterCaptured2005" role="doc-biblioref">Tallman 2005</a>)</span>. While other inputs exist, we focus almost exclusively on the Clark Fork due to the overall magnitude relative to other inputs, and the high temporal correlation between all inflows. A seasonal decomposition using LOESS (<a href="#fig-cfr-stl" class="quarto-xref">Figure&nbsp;5</a>) shows that there has been a consistent increasing trend in monthly average flows over the study period (2000-2023). In addition, as expected, there is a strong seasonality component with peak flows coming in late spring and baseflows in late summer and early fall. The seasonality is increasing suggesting a trend in interannual variability.</p>
+<div id="cell-fig-cfr-stl" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div id="fig-cfr-stl" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -279,7 +284,7 @@ Figure&nbsp;5: Seasonal decomposition of the Clark Fork River monthly streamflow
 </div>
 </div>
 </div>
-<p>We investigate the trend further using a Mann-Kendall test (<span class="citation" data-cites="mannNonparametricTestsTrend1945">Mann (<a href="#ref-mannNonparametricTestsTrend1945" role="doc-biblioref">1945</a>)</span>, <span class="citation" data-cites="kendallRankCorrelationMethods1975">Kendall (<a href="#ref-kendallRankCorrelationMethods1975" role="doc-biblioref">1975</a>)</span>), which avoids assumptions of normality and independence. The results indicate a statistically significant (<span class="math inline">\(p&lt;0.5\)</span>) increasing trend of 24 cfs/month. We further break down the trend analysis into seasons: winter (December, January, February), spring (March, April, May), summer (June, July, August), and fall (September, October, November) (<a href="#fig-cfr-seas-trends" class="quarto-xref">Figure&nbsp;6</a>). All four seasons have increasing trends, although the summer season’s trend is not statistically significant at the <span class="math inline">\(p&lt;0.5\)</span> level.</p>
+<p>We investigate the trend further using a Mann-Kendall statistical significance test <span class="citation" data-cites="mannNonparametricTestsTrend1945 kendallRankCorrelationMethods1975">(<a href="#ref-mannNonparametricTestsTrend1945" role="doc-biblioref">Mann 1945</a>; <a href="#ref-kendallRankCorrelationMethods1975" role="doc-biblioref">Kendall 1975</a>)</span>, which avoids assumptions of normality and independence. The results indicate a statistically significant (<span class="math inline">\(p&lt;0.5\)</span>) increasing trend of 24 cfs/month. We further break down the trend analysis into seasons: winter (December, January, February), spring (March, April, May), summer (June, July, August), and fall (September, October, November) (<a href="#fig-cfr-seas-trends" class="quarto-xref">Figure&nbsp;6</a>). All four seasons have increasing trends, although the summer season’s trend is not statistically significant at the <span class="math inline">\(p&lt;0.5\)</span> level.</p>
 <div id="cell-fig-cfr-seas-trends" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div id="fig-cfr-seas-trends" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -312,7 +317,7 @@ Figure&nbsp;7: Trends in groundwater depth for the 16 wells within the study are
 </div>
 </div>
 </div>
-<p>Additionally, we calculated the 10th, 50th, and 90th quantile regression lines to show trends in lower, median, and upper values, respectively (<a href="#fig-gw-quantreg" class="quarto-xref">Figure&nbsp;8</a>). The results show strong increasing trends in the upper quantile of each well, suggesting that increases in peak recharge events are largely driving the overall trend in the groundwater. Median and lower quantiles show less of an increasing trend and sometimes even decreasing trends. The decreasing trends in the lower quantiles tend to located in the south and west regions the study site (<a href="#fig-gw-quantreg-lower" class="quarto-xref">Figure&nbsp;9</a>). The difference in trends between the 90th and 10th percentile also suggest an overall increase in interannual variability throughout the time period.</p>
+<p>Additionally, we calculated the 10th, 50th, and 90th quantile regression lines to show trends in lower, median, and upper values, respectively (<a href="#fig-gw-quantreg" class="quarto-xref">Figure&nbsp;8</a>). The results show strong increasing trends in the upper quantile of each well, suggesting that increases in peak recharge events are largely driving the overall trend in the groundwater. Median and lower quantiles show less of an increasing trend and sometimes even decreasing trends. The decreasing trends in the lower quantiles tend to bw located in the south and west regions the study site (<a href="#fig-gw-quantreg-lower" class="quarto-xref">Figure&nbsp;9</a>). The difference in trends between the 90th and 10th percentile also suggest an overall increase in interannual variability throughout the time period.</p>
 <div id="cell-fig-gw-quantreg" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-quantreg" class="quarto-figure quarto-figure-center quarto-float anchored">
