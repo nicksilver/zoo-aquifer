@@ -45,6 +45,7 @@ def plot_data_and_trendline(data, color, mann_kendall=True):
 
     # Add the p-value to the plot
     plt.text(0.3, 0.1, f'p-value: {p_value:.2e}', ha='left', va='top', transform=plt.gca().transAxes)
+    plt.text(0.3, 0.05, f'slope: {slope:.2e}', ha='left', va='top', transform=plt.gca().transAxes)
 
     # Plot the trendline
     if mann_kendall:
