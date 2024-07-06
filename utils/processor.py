@@ -8,6 +8,7 @@ import dataretrieval.nwis as nwis
 from sklearn.linear_model import LinearRegression
 from .pysda import sdapoly, sdaprop, sdainterp
 from shapely.geometry import Polygon
+from statsmodels.tsa.seasonal import STL
 
 
 class GWIC():
@@ -172,6 +173,85 @@ class Imputer():
     def __init__(self, df):
         """df: pandas DataFrame with Q and swl columns"""
         self.df = df
+    
+    def well_regression(self, wellnames=['151189', '151190']):
+        """Impute missing values in the DataFrame using a multiple linear regresssion
+        model using wells that have complete timeseries values and day of year as 
+        predictors."""
+        
+        w1_name = wellnames[0]
+        w2_name = wellnames[1]
+        
+        # Make sure dataset is clean each time
+        wells_imputed = self.df.copy()
+        clip_well_na_date = wells_imputed[[w1_name, w2_name]].dropna().first_valid_index()
+        wells_imputed = wells_imputed[clip_well_na_date:]
+          
+        # Need to fill in gaps of well data used as predictors. Will use STL.
+        w1_data = wells_imputed[w1_name] 
+        w2_data = wells_imputed[w2_name]
+        
+        # Apply STL decomposition to the groundwater level data
+        stl1 = STL(w1_data.interpolate(), seasonal=25, period=12, robust=True)
+        stl2 = STL(w2_data.interpolate(), seasonal=25, period=12, robust=True)
+        res1 = stl1.fit()
+        res2 = stl2.fit()
+
+        # Extract the seasonal component
+        seasonal1 = res1.seasonal
+        seasonal2 = res2.seasonal
+
+        # Created deseasonalized groundwater level data
+        df_deseas1 = w1_data - seasonal1
+        df_deseas2 = w2_data - seasonal2
+
+        # Interpolate the deseasonalized data
+        df_deseas_int1 = df_deseas1.interpolate(method='linear')
+        df_deseas_int2 = df_deseas2.interpolate(method='linear')
+
+        # Add seasonal component back to deseasonalized data
+        wells_imputed[w1_name] = df_deseas_int1 + seasonal1
+        wells_imputed[w2_name] = df_deseas_int2 + seasonal2
+        
+        # Loop through columns
+        for c in np.arange(1, wells_imputed.shape[1]):
+
+            # Get name of well and make sure it is not a predictor well
+            cname = wells_imputed.iloc[:, c].name
+            if (cname == w1_name) or (cname == w2_name):
+                continue
+            
+            # Drop preceding NaNs
+            first_ind = wells_imputed.iloc[:, c].first_valid_index()
+            new_df = wells_imputed.loc[:, [w1_name, w2_name, cname]][first_ind:]  
+                
+            # Get indices of NaNs
+            imputed_indices = new_df[cname][new_df[cname].isnull()].index
+
+            # Drop rows with missing values
+            df_dropped = new_df.dropna()    
+
+            # Get predictors and dependent variable
+            X = np.column_stack((df_dropped[w1_name].values, df_dropped[w2_name].values, df_dropped.index.dayofyear.values))
+            Y = df_dropped[cname].values
+
+            # Instantiate model
+            model = LinearRegression()
+
+            # Fit model
+            model.fit(X, Y)
+
+            # Predict missing values
+            pred1 = new_df.loc[imputed_indices, w1_name].values
+            pred2 = new_df.loc[imputed_indices, w2_name].values
+            pred3 = new_df.loc[imputed_indices, cname].index.dayofyear.values
+            preds = np.column_stack((pred1, pred2, pred3))
+            predicted = model.predict(preds)
+            
+            # Fill missing values with predicted values
+            wells_imputed[cname][imputed_indices] = predicted
+            
+        return wells_imputed
     
     def q_and_doy_regression(self):
         """Impute missing values in the DataFrame using a linear regression model

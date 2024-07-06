@@ -41,7 +41,7 @@ def plot_data_and_trendline(data, color, mann_kendall=True):
     plt.plot(x_datetime, y, color='gray', linewidth=0.75)
     
     # Set the color of the trendline based on the p-value
-    trend_color = 'red' if p_value < 0.1 else 'black'
+    trend_color = 'red' if p_value < 0.05 else 'black'
 
     # Add the p-value to the plot
     plt.text(0.3, 0.1, f'p-value: {p_value:.2e}', ha='left', va='top', transform=plt.gca().transAxes)
