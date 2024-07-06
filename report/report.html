@@ -248,7 +248,7 @@ Figure&nbsp;3: The study site including the 16 monitoring wells used in the anal
 </section>
 <section id="data-imputation-gap-filling" class="level3">
 <h3 class="anchored" data-anchor-id="data-imputation-gap-filling">Data Imputation (Gap Filling)</h3>
-<p>The historical groundwater measurements from the 16 monitoring wells used in our analyses, were taken sporadically and inconsistently over the study time period (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;4</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We used a two-step approach to gap fill the data. In the first step we identified the two wells with close to continuous data (e.g.&nbsp;151189 and 151190; <a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;4</a>). We then used seasonal trend decomposition using LOESS (STL; <span class="citation" data-cites="clevelandSTLSeasonaltrendDecomposition1990">Cleveland et al. (<a href="#ref-clevelandSTLSeasonaltrendDecomposition1990" role="doc-biblioref">1990</a>)</span>) to fill in the few missing data points of those two wells. In the second step, we developed a multiple linear regression (MLR) model for each well using the two complete wells plus the day of year (i.e.&nbsp;last day of the month) as independent, predictor variables. We used this MLR model to impute data into the gaps of each well independently to create consistent monthly data across all water-years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, MLR using Clark Fork River flows, and STL by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression imputation method using the two complete wells and day of year proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>The historical groundwater measurements from the 16 monitoring wells used in our analyses, were taken sporadically and inconsistently over the study time period (<a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;4</a>). Therefore, in order to compare across all sites we needed to fill the data gaps and resample to monthly average values. We used a two-step approach to gap fill the data. In the first step we identified the two wells with close to continuous data (e.g.&nbsp;151189 and 151190; <a href="#fig-gw-imputation" class="quarto-xref">Figure&nbsp;4</a>). We then used seasonal trend decomposition using LOESS (STL; <span class="citation" data-cites="clevelandSTLSeasonaltrendDecomposition1990">Cleveland et al. (<a href="#ref-clevelandSTLSeasonaltrendDecomposition1990" role="doc-biblioref">1990</a>)</span>) to fill in the few missing data points of those two wells. In the second step, we developed a multiple linear regression (MLR) model for each well using the two complete wells plus the day of year (i.e.&nbsp;last day of the month) as independent, predictor variables. We used this MLR model to impute data into the gaps of each well independently to create consistent monthly data across all water-years (2000-2023) in each monitoring well used in the study. We tested several other methods including linear interpolation, time-based interpolation, MLR using Clark Fork River flows, and STL by iterating the method 100 times and leaving out 5 known data points to later predict with the model. The multiple linear regression imputation method using the two complete wells and day of year proved to have the best error statistics across the all metrics (MAE, MSE, RMSE, MAPE, and R-squared; <a href="#tbl-error-stats" class="quarto-xref">Table&nbsp;2</a>)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
 <div id="cell-fig-gw-imputation" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div id="fig-gw-imputation" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -261,6 +261,80 @@ Figure&nbsp;4: The groundwater monitoring sampling dates for each well before ga
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-error-stats" class="cell quarto-float anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-error-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Error statistics from the data imputation methods tested. For this study we used the STL Decomposition to fill data in the two most complete wells and then used the Well (MLR) Regression method using those two wells and day of year to build models for each well and use those models to gill gaps in the data record.
+</figcaption>
+<div aria-describedby="tbl-error-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe do-not-create-environment cell table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">MAE</th>
+<th data-quarto-table-cell-role="th">MSE</th>
+<th data-quarto-table-cell-role="th">RMSE</th>
+<th data-quarto-table-cell-role="th">MAPE</th>
+<th data-quarto-table-cell-role="th">R^2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Linear Interpolation</td>
+<td>2.4923</td>
+<td>13.8497</td>
+<td>3.7215</td>
+<td>10.5845</td>
+<td>0.9556</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">STL Decomposition</td>
+<td>1.3017</td>
+<td>3.9748</td>
+<td>1.9937</td>
+<td>5.4697</td>
+<td>0.9873</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Time Interpolation</td>
+<td>2.4703</td>
+<td>13.7026</td>
+<td>3.7017</td>
+<td>10.5757</td>
+<td>0.9563</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Q and DOY Regression</td>
+<td>1.6086</td>
+<td>4.9560</td>
+<td>2.2262</td>
+<td>6.1077</td>
+<td>0.9843</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Well Regression</td>
+<td>0.9365</td>
+<td>1.9474</td>
+<td>1.3955</td>
+<td>4.5326</td>
+<td>0.9929</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</figure>
 </div>
 </div>
 </section>
