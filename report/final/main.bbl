@@ -1,0 +1,368 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{whitlock2017MontanaClimate2017}{article}{}
+      \name{author}{5}{}{%
+        {{hash=bb9b35258d63602a6e4761dfb9d40e80}{%
+           family={Whitlock},
+           familyi={W\bibinitperiod},
+           given={Cathy},
+           giveni={C\bibinitperiod}}}%
+        {{hash=f34dbb97ed1967f024ca39c9fe93971c}{%
+           family={Cross},
+           familyi={C\bibinitperiod},
+           given={Wyatt\bibnamedelima F},
+           giveni={W\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=bdbb7a5e97d6da25e20cc8cea2d6fd4a}{%
+           family={Maxwell},
+           familyi={M\bibinitperiod},
+           given={Bruce\bibnamedelima D},
+           giveni={B\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=03ae0e9b29714137484bea5f7dcf2870}{%
+           family={Silverman},
+           familyi={S\bibinitperiod},
+           given={Nick},
+           giveni={N\bibinitperiod}}}%
+        {{hash=2b8a6083824b2432d9492d7d595568a9}{%
+           family={Wade},
+           familyi={W\bibinitperiod},
+           given={Alisa\bibnamedelima A},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Montana Institute on Ecosystems}%
+      }
+      \strng{namehash}{34851513b7dd539469eef64c40e7c97c}
+      \strng{fullhash}{5176d5f9dae26d53f450f86c6ab55fbf}
+      \strng{bibnamehash}{34851513b7dd539469eef64c40e7c97c}
+      \strng{authorbibnamehash}{34851513b7dd539469eef64c40e7c97c}
+      \strng{authornamehash}{34851513b7dd539469eef64c40e7c97c}
+      \strng{authorfullhash}{5176d5f9dae26d53f450f86c6ab55fbf}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Montana Climate Assessment (MCA) is an effort to synthesize, evaluate, and share credible and relevant scientific information about climate change in Montana with the citizens of the State. The motivation for the MCA arose from citizens and organizations in Montana who have expressed interest in receiving timely and pertinent information about climate change, including information about historical variability, past trends, and projections of future impacts as they relate to topics of economic concern.This first assessment reports on climate trends and their consequences for three of Montana's vital sectors: water, forests, and agriculture. We consider the MCA to be a sustained effort. We plan to regularly incorporate new scientific information, cover other topics important to the people of Montana, and address the needs of the state.}
+      \field{month}{9}
+      \field{title}{2017 {{Montana Climate Assessment}}: {{Stakeholder}} Driven, Science Informed}
+      \field{urlday}{20}
+      \field{urlmonth}{9}
+      \field{urlyear}{2017}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 269}
+      \range{pages}{269}
+      \verb{doi}
+      \verb 10.15788/M2WW8W
+      \endverb
+      \keyw{climate change,montana,My_Pubs}
+    \endentry
+    \entry{saxeMachineLearningApproach2023}{article}{}
+      \name{author}{6}{}{%
+        {{hash=681209fd7ed48b9a3ccc2813ad1ea096}{%
+           family={Saxe},
+           familyi={S\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod}}}%
+        {{hash=89879b30b83c8f94fa1c502d48a79cce}{%
+           family={Servia},
+           familyi={S\bibinitperiod},
+           given={Hemant},
+           giveni={H\bibinitperiod}}}%
+        {{hash=f8995b80bfab8b434e93d9464f6a0ff2}{%
+           family={Albrecht},
+           familyi={A\bibinitperiod},
+           given={Frauke},
+           giveni={F\bibinitperiod}}}%
+        {{hash=09596b082b2dca409847640d825a5d6d}{%
+           family={Silverman},
+           familyi={S\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+        {{hash=0274ebd9a16a397baaa7c14d7989a221}{%
+           family={Kawasaki},
+           familyi={K\bibinitperiod},
+           given={Masatoshi},
+           giveni={M\bibinitperiod}}}%
+        {{hash=2d5e0ff9d2afbbf20cff7da2859ca1ba}{%
+           family={Kurihara},
+           familyi={K\bibinitperiod},
+           given={Shun},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {AGU}%
+      }
+      \strng{namehash}{77f68934ebe42be662e1ff005b4efbc6}
+      \strng{fullhash}{100ddba8d545da86aae1ea9527f9e102}
+      \strng{bibnamehash}{77f68934ebe42be662e1ff005b4efbc6}
+      \strng{authorbibnamehash}{77f68934ebe42be662e1ff005b4efbc6}
+      \strng{authornamehash}{77f68934ebe42be662e1ff005b4efbc6}
+      \strng{authorfullhash}{100ddba8d545da86aae1ea9527f9e102}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{journaltitle}{AGU23}
+      \field{shorttitle}{A {{Machine Learning Approach}} to {{Global Hydrologic Modeling}}}
+      \field{title}{A {{Machine Learning Approach}} to {{Global Hydrologic Modeling}}: {{Transferable Streamflow}} and {{Groundwater Estimation Over}} the {{United States}} and {{Japan}}}
+      \field{year}{2023}
+    \endentry
+    \entry{evansGroundwaterLevelMapping2020}{article}{}
+      \name{author}{5}{}{%
+        {{hash=f967d195b1159e3fde275705ab524216}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={Steven\bibnamedelima W.},
+           giveni={S\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=e06b62bb619120a96ed22c3178d925e0}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={Norman\bibnamedelima L.},
+           giveni={N\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=ebe686e4d7595addbb898cba0e468f8f}{%
+           family={Williams},
+           familyi={W\bibinitperiod},
+           given={Gustavious\bibnamedelima P.},
+           giveni={G\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=5c98099af30820760b9dadf26c16566b}{%
+           family={Ames},
+           familyi={A\bibinitperiod},
+           given={Daniel\bibnamedelima P.},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=471fa6608637674ba9cc80787251a739}{%
+           family={Nelson},
+           familyi={N\bibinitperiod},
+           given={E.\bibnamedelimi James},
+           giveni={E\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{4b579d93af32aa698d8ce6690ccabbfd}
+      \strng{fullhash}{5b488637d1d56029f449b4a6dac5a9b9}
+      \strng{bibnamehash}{4b579d93af32aa698d8ce6690ccabbfd}
+      \strng{authorbibnamehash}{4b579d93af32aa698d8ce6690ccabbfd}
+      \strng{authornamehash}{4b579d93af32aa698d8ce6690ccabbfd}
+      \strng{authorfullhash}{5b488637d1d56029f449b4a6dac5a9b9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Decision makers need an accurate understanding of aquifer storage trends to effectively manage groundwater resources. Groundwater is difficult to monitor and quantify since the data collected from monitoring wells are often available only at irregular and infrequent intervals. We present an open-source web application (app) to visualize groundwater data over time and automatically calculate changes in aquifer storage volume to help managers assess aquifer sustainability. This app uses a novel multi-linear regression (MLR) algorithm to impute missing data for infrequently sampled wells, using correlated data from other wells in the same aquifer. The app uses this MLR-imputed data to spatially interpolate water levels throughout an aquifer at user-specified time steps using GSLIB Kriging code. Based on our tests of unconfined aquifer systems, the imputed data increased the accuracy of the spatial interpolation over standard methods and resulted in estimates of aquifer storage change comparable to those of detailed USGS studies.}
+      \field{issn}{1364-8152}
+      \field{journaltitle}{Environmental Modelling \& Software}
+      \field{month}{9}
+      \field{shorttitle}{Groundwater {{Level Mapping Tool}}}
+      \field{title}{Groundwater {{Level Mapping Tool}}: {{An}} Open Source Web Application for Assessing Groundwater Sustainability}
+      \field{urlday}{21}
+      \field{urlmonth}{12}
+      \field{urlyear}{2023}
+      \field{volume}{131}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{104782}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.envsoft.2020.104782
+      \endverb
+      \verb{file}
+      \verb /home/nick/Zotero/storage/LMQQWIBQ/Evans et al. - 2020 - Groundwater Level Mapping Tool An open source web.pdf;/home/nick/Zotero/storage/JY4RG3XI/S1364815220301997.html
+      \endverb
+      \keyw{Aquifer storage,Data imputation,Groundwater,Sustainability,Time series,Water resources management}
+    \endentry
+    \entry{clarkForecastingMultipleGroundwater2022}{article}{}
+      \name{author}{3}{}{%
+        {{hash=5cd06fe3d34f2a8ec8a2f4a9fd5984e6}{%
+           family={Clark},
+           familyi={C\bibinitperiod},
+           given={Stephanie\bibnamedelima R.},
+           giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=3ac9f55f42c92ed9973caabe82e1d0cd}{%
+           family={Pagendam},
+           familyi={P\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=23916dc45fbd58bbc615eeea8a6cde52}{%
+           family={Ryan},
+           familyi={R\bibinitperiod},
+           given={Louise},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{efb901a2390fbf5147b991ef29de09f5}
+      \strng{fullhash}{101796b54787ad55d1a2bb4ad19b5108}
+      \strng{bibnamehash}{101796b54787ad55d1a2bb4ad19b5108}
+      \strng{authorbibnamehash}{101796b54787ad55d1a2bb4ad19b5108}
+      \strng{authornamehash}{efb901a2390fbf5147b991ef29de09f5}
+      \strng{authorfullhash}{101796b54787ad55d1a2bb4ad19b5108}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Environmental Research and Public Health}
+      \field{number}{9}
+      \field{title}{Forecasting {{Multiple Groundwater Time Series}} with {{Local}} and {{Global Deep Learning Networks}}}
+      \field{urlday}{13}
+      \field{urlmonth}{2}
+      \field{urlyear}{2024}
+      \field{volume}{19}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{5091}
+      \range{pages}{1}
+      \verb{file}
+      \verb /home/nick/Zotero/storage/TQN8AZ9K/Clark et al_2022_Forecasting Multiple Groundwater Time Series with Local and Global Deep.pdf
+      \endverb
+    \endentry
+    \entry{nearingWhatRoleDoes2021}{article}{}
+      \name{author}{8}{}{%
+        {{hash=6479d8d31204c2a8c0194df9a2ce48a2}{%
+           family={Nearing},
+           familyi={N\bibinitperiod},
+           given={Grey\bibnamedelima S.},
+           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=a7052b680363d9de6c3620554225a705}{%
+           family={Kratzert},
+           familyi={K\bibinitperiod},
+           given={Frederik},
+           giveni={F\bibinitperiod}}}%
+        {{hash=dd819903e45d1de228a1f9c90a90ddec}{%
+           family={Sampson},
+           familyi={S\bibinitperiod},
+           given={Alden\bibnamedelima Keefe},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=5d1b9af76597350ec3f81f22549e10a0}{%
+           family={Pelissier},
+           familyi={P\bibinitperiod},
+           given={Craig\bibnamedelima S.},
+           giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=a3874b6469a3e6b96058de6eeb10e5a6}{%
+           family={Klotz},
+           familyi={K\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=e1fbc8a153bfb4b102c43f63a5167eb0}{%
+           family={Frame},
+           familyi={F\bibinitperiod},
+           given={Jonathan\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=51fe5b999580cc3ff2e6af364d5f61b0}{%
+           family={Prieto},
+           familyi={P\bibinitperiod},
+           given={Cristina},
+           giveni={C\bibinitperiod}}}%
+        {{hash=0fb622dc2811ab8f4b128356c16418d8}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Hoshin\bibnamedelima V.},
+           giveni={H\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \strng{namehash}{430d54443c2781d478c24a5f9ff79e83}
+      \strng{fullhash}{7f86c498befc596fc3ec966477ef52a2}
+      \strng{bibnamehash}{430d54443c2781d478c24a5f9ff79e83}
+      \strng{authorbibnamehash}{430d54443c2781d478c24a5f9ff79e83}
+      \strng{authornamehash}{430d54443c2781d478c24a5f9ff79e83}
+      \strng{authorfullhash}{7f86c498befc596fc3ec966477ef52a2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper is derived from a keynote talk given at the Google's 2020 Flood Forecasting Meets Machine Learning Workshop. Recent experiments applying deep learning to rainfall-runoff simulation indicate that there is significantly more information in large-scale hydrological data sets than hydrologists have been able to translate into theory or models. While there is a growing interest in machine learning in the hydrological sciences community, in many ways, our community still holds deeply subjective and nonevidence-based preferences for models based on a certain type of ``process understanding'' that has historically not translated into accurate theory, models, or predictions. This commentary is a call to action for the hydrology community to focus on developing a quantitative understanding of where and when hydrological process understanding is valuable in a modeling discipline increasingly dominated by machine learning. We offer some potential perspectives and preliminary examples about how this might be accomplished.}
+      \field{issn}{1944-7973}
+      \field{journaltitle}{Water Resources Research}
+      \field{langid}{english}
+      \field{number}{3}
+      \field{title}{What {{Role Does Hydrological Science Play}} in the {{Age}} of {{Machine Learning}}?}
+      \field{urlday}{24}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{volume}{57}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{e2020WR028091}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1029/2020WR028091
+      \endverb
+      \verb{file}
+      \verb /home/nick/Dropbox/zotero/Nearing et al_2021_What Role Does Hydrological Science Play in the Age of Machine Learning.pdf;/home/nick/Zotero/storage/49KFGRZE/2020WR028091.html
+      \endverb
+      \keyw{Deep Learning,Machine Learning,Modeling,Uncertainty}
+    \endentry
+    \entry{desbaratsKrigingWaterTable2002}{article}{}
+      \name{author}{4}{}{%
+        {{hash=bc012e83404d838953a782fdc192706f}{%
+           family={Desbarats},
+           familyi={D\bibinitperiod},
+           given={A.\bibnamedelimi J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=999a24746a80e22c1a42f9f4e756ff65}{%
+           family={Logan},
+           familyi={L\bibinitperiod},
+           given={C.\bibnamedelimi E.},
+           giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=55de633a3481d957672d77aa65334a4e}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=a85f0c06e593639094c4f62e23ffa286}{%
+           family={Sharpe},
+           familyi={S\bibinitperiod},
+           given={D.\bibnamedelimi R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{37411f4cace544eb4d1de6ea681185d2}
+      \strng{fullhash}{455ef6e32ca6824609d93d6c1d908002}
+      \strng{bibnamehash}{37411f4cace544eb4d1de6ea681185d2}
+      \strng{authorbibnamehash}{37411f4cace544eb4d1de6ea681185d2}
+      \strng{authornamehash}{37411f4cace544eb4d1de6ea681185d2}
+      \strng{authorfullhash}{455ef6e32ca6824609d93d6c1d908002}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In unconfined aquifers flowing under topographic gradients, the water table is a subdued replica of the ground surface above. This principle is the basis for using detailed collateral or secondary information from digital elevation models to supplement sparse observations from water wells in the mapping of phreatic surfaces. Data from DEM-derived secondary variables are incorporated into the estimation of water table elevations using the geostatistical method known as kriging with an external drift (KED). Two different KED models are proposed based on the choice of secondary variable. In the first, water table elevation is expressed as the sum of a deterministic trend given by topographic elevation and a residual random component representing depth to water table. In the second, depth to water table is expressed as a linear function of a deterministic trend, given by the TOPMODEL topographic index, and a residual random error. The relationship between water table depth and topographic index is derived from simplified groundwater dynamics and forms the basis of TOPMODEL-type rainfall-runoff models. The two KED models are applied to the mapping of water table elevations in the Oak Ridges Moraine (ORM), an unconfined aquifer near Toronto, Canada. Results show that KED with topographic elevation as external drift is the more robust of the two models. Despite its strong theoretical basis, the second model yields kriged water table elevations that are not always physically plausible. In part, this is because field observations of water table depth do not verify the predicated relationship with topographic index in large parts of the study area. However, this relationship may be valid in other cases and at other spatial scales. In such cases, the second model would provide a very powerful approach for mapping water table elevations and for calibrating distributed parameters of the TOPMODEL equations on water well observations.}
+      \field{issn}{0022-1694}
+      \field{journaltitle}{Journal of Hydrology}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{On the Kriging of Water Table Elevations Using Collateral Information from a Digital Elevation Model}
+      \field{urlday}{14}
+      \field{urlmonth}{2}
+      \field{urlyear}{2024}
+      \field{volume}{255}
+      \field{year}{2002}
+      \field{urldateera}{ce}
+      \field{pages}{25\bibrangedash 38}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1016/S0022-1694(01)00504-2
+      \endverb
+      \verb{file}
+      \verb /home/nick/Zotero/storage/KQXJFPGD/S0022169401005042.html
+      \endverb
+      \keyw{Catchment models,Geostatistics,Kriging,Oak Ridges Moraine,Phreatic aquifers,Topographic index}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
